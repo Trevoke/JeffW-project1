@@ -1,4 +1,5 @@
 class Stock < ActiveRecord::Base
-  has_and_belongs_to_many :portfolios
   has_many :days
+  has_many :shares
+  has_many :portfolios, through: :shares
 end

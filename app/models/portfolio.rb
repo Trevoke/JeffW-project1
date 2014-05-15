@@ -1,4 +1,5 @@
 class Portfolio < ActiveRecord::Base
   belongs_to :investor
-  has_and_belongs_to_many :stocks
+  has_many :shares
+  has_many :stocks, through: :shares
 end
