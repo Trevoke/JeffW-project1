@@ -1,0 +1,12 @@
+
+<% @current_investor.portfolios.each do |portfolio| %>
+    <div>
+        <%= portfolio.name %>
+    </div>
+<% end %>
+
+<form action="/portfolios/new" method="get">
+  <button type="submit">Create New</button>
+</form>
+
+
