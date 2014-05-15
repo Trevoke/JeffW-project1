@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140515174216) do
+ActiveRecord::Schema.define(version: 20140515180253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "days", force: true do |t|
+    t.string   "trade_date"
+    t.string   "symbol"
+    t.float    "close"
+    t.integer  "stock_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "investors", force: true do |t|
     t.string   "username"
@@ -28,6 +37,11 @@ ActiveRecord::Schema.define(version: 20140515174216) do
     t.integer  "investor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "portfolios_stocks", force: true do |t|
+    t.integer "stock_id"
+    t.integer "portfolio_id"
   end
 
   create_table "stocks", force: true do |t|
