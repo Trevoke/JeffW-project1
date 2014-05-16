@@ -16,7 +16,6 @@ class PortfoliosController < ApplicationController
     redirect_to "/portfolios/#{new_portfolio.id}"
   end
 
-
   def show
     @portfolio = Portfolio.find(params[:id])
     @details = Portfolio.populate_portfolio(params[:id])
@@ -27,6 +26,5 @@ class PortfoliosController < ApplicationController
   def portfolio_params
     params.require(:portfolio).permit(:name)
   end
-
 
 end

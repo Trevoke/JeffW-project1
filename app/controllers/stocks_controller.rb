@@ -18,12 +18,10 @@ class StocksController < ApplicationController
     redirect_to "/portfolios/#{portfolio.id}"
   end
 
-
   private
 
   def stock_params
     params.require(:stock).permit(:name)
   end
-
 
 end
