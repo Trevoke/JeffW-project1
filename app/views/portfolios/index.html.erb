@@ -11,12 +11,23 @@
           <button class="gen_button" type="submit">Create New</button>
         </form>
     </div>
-    <div class="seven columns offset-by-one omega">
+    <div class="seven columns offset-by-two">
+        <table>
+            <tr class="port_header">
+                <th>Portfolio Name</th>
+                <th>Date Created</th>
+            </tr>
         <% @current_investor.portfolios.each do |portfolio| %>
-            <div class="port_list">
-                <a class="port_link" href="/portfolios/<%=portfolio.id%>"><%= portfolio.name %></a>
-            </div>
+            <tr class="port_list">
+                <td class="port_cell left_cell">
+                    <a class="port_link" href="/portfolios/<%=portfolio.id%>"><%= portfolio.name %></a>
+                </td>
+                <td class="port_cell">
+                    <%= portfolio.created_at.to_date %>
+                </td>
+            </tr>
         <% end %>
+    </table>
     </div>
 </div>
 

@@ -1,6 +1,25 @@
 
-<%= form_for @portfolio do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name%>
-    <%= f.submit %>
+
+<% 3.times do%>
+    <div class="row"></div>
 <% end %>
+
+<div class="container">
+    <%= form_for @portfolio do |f| %>
+        <div class="three columns">
+            <%= f.submit(class: "gen_button") %>
+        </div>
+        <div class="seven columns offset-by-two">
+            <%= f.label :name %>
+            <%= f.text_field :name%>
+        </div>
+    <% end %>
+    <form action="/portfolios" method="get">
+                <button class="gen_button" type="submit">Back</button>
+            </form>
+</div>
+
+
+
+
+
