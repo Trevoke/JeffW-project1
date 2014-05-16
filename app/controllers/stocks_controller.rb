@@ -20,10 +20,9 @@ class StocksController < ApplicationController
   end
 
   def display
-
-    prices = Day.get_prices(params[:sym])
-    @p = Hash[prices.sort].values
-
+    price_hash = Day.get_prices(params[:sym])
+    @sorted_price_array = Hash[price_hash.sort].values
+    @url = Gchart.line(:data => @sorted_price_array, :axis)
   end
 
   def destroy
