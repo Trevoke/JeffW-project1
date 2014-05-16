@@ -21,6 +21,6 @@ gem 'rails_12factor', group: :production
 gem 'httparty'
 gem 'font-awesome-rails'
 gem 'yahoo-finance', require: 'yahoo_finance'
-
+gem 'googlecharts', '~> 1.6.8'
 
 

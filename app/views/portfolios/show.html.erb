@@ -23,7 +23,7 @@
             </tr>
             <% @details.each do |stock| %>
                 <tr>
-                    <td class="port_cell left_cell"><%= stock["ticker"] %></td>
+                    <td class="port_cell left_cell"><a href="/stocks/<%=stock["ticker"]%>"><%= stock["ticker"] %></a></td>
                     <td class="port_cell left_cell"><%= stock["name"] %></td>
                     <td class="port_cell left_cell"><%= stock["num_shares"]%></td>
                     <td class="port_cell">

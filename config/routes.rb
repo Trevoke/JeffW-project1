@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   get '/portfolios/analyze/:id' => 'portfolios#analyze'
-
+  get '/stocks/:sym' => 'stocks#display'
   resources :portfolios do
     resources :stocks, except: [:index]
   end

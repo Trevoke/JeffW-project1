@@ -19,6 +19,13 @@ class StocksController < ApplicationController
     redirect_to "/portfolios/#{portfolio.id}"
   end
 
+  def display
+
+    prices = Day.get_prices(params[:sym])
+    @p = Hash[prices.sort].values
+
+  end
+
   def destroy
     stock_id = params[:id]
     portfolio_id = params[:portfolio_id]
