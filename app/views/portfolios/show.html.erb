@@ -34,7 +34,7 @@
         <div class="row"></div>
     <% end %>
     <div class="ten columns offset-by-five">
-        <form action="/portfolios/analyze" method="get">
+        <form action="/portfolios/analyze/<%=@portfolio.id%>" method="get">
             <input type="date" name="begin_date">
             <input type="date" name="end_date">
             <input type="submit">

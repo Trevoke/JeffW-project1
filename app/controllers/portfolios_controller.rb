@@ -22,6 +22,7 @@ class PortfoliosController < ApplicationController
   end
 
   def analyze
+
     @p = params
   end
 
