@@ -23,11 +23,19 @@ class PortfoliosController < ApplicationController
 
   def analyze
     portfolio = Portfolio.find(params.fetch(:id))
-    full_portflio_data = Portfolio.combine_data(portfolio.id)
-    @p = full_portflio_data
+    @full_portfolio_data = Portfolio.combine_data(portfolio.id)
+    @full_portfolio_data.each do |stock|
+      stock["begin_price"] = stock["prices"][params.fetch(:begin_date)]
+      stock["end_price"] = stock["prices"][params.fetch(:end_date)]
+      stock["begin_value"]= (stock["begin_price"] * stock["num_shares"]).round(3)
+      stock["end_value"]=(stock["end_price"] * stock["num_shares"]).round(3)
+      stock["perc_change"]= (stock["end_value"]/stock["begin_value"]-1).round(4)*100
+    end
   end
 
   private
+
+
 
   def portfolio_params
     params.require(:portfolio).permit(:name)
