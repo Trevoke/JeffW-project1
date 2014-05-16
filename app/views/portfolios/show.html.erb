@@ -1,0 +1,15 @@
+<%= @portfolio.name %>
+
+
+
+<form action="/portfolios/<%=@portfolio.id%>/stocks/new" method="get">
+  <button type="submit">Add Stock</button>
+</form>
+
+<% @details.each do |stock| %>
+<div>
+  <%= stock["ticker"] %>
+  <%= stock["name"] %>
+  <%= stock["num_shares"]%>
+</div>
+<% end %>

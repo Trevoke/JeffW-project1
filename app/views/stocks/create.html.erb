@@ -1,0 +1,23 @@
+
+
+
+<table>
+  <% @list.each do |result| %>
+  <tr>
+      <td><%=result["symbol"]%></td>
+      <td><%=result["name"]%></td>
+      <td><%=result["exchDisp"]%></td>
+      <td>
+          <form action="/portfolios/<%=@portfolio_id%>/stocks/<%=result["symbol"]%>" method="get">
+            <input type="text" name="num_shares">
+            <input type="hidden" name="name" value="<%=result["name"]%>">
+            <input type="submit">
+          </form>
+      </td>
+  </tr>
+
+  <% end %>
+
+</table>
+
+

@@ -1,7 +1,7 @@
 
 <% @current_investor.portfolios.each do |portfolio| %>
     <div>
-        <%= portfolio.name %>
+        <a href="/portfolios/<%=portfolio.id%>"><%= portfolio.name %></a>
     </div>
 <% end %>
 
