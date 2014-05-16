@@ -19,6 +19,15 @@ class StocksController < ApplicationController
     redirect_to "/portfolios/#{portfolio.id}"
   end
 
+  def destroy
+    stock_id = params[:id]
+    portfolio_id = params[:portfolio_id]
+    share = Share.where(portfolio_id: portfolio_id, stock_id: stock_id).take
+    Share.delete(share.id)
+    redirect_to "/portfolios/#{portfolio_id}"
+  end
+
+
   private
 
   def stock_params

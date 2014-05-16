@@ -12,6 +12,7 @@ class Portfolio < ActiveRecord::Base
       stock_hash["name"] = stock.name
       curr_share = Share.where(portfolio_id: portfolio_id, stock_id: stock.id).take
       stock_hash["num_shares"] = curr_share.num_shares
+      stock_hash["id"] = stock.id
       portfolio_details << stock_hash
     end
     return portfolio_details

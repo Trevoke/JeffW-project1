@@ -18,7 +18,7 @@ class Stock < ActiveRecord::Base
   def update_stock(ticker)
     curr_stock = Stock.find_by ticker: ticker
     end_day = Time.now
-    begin_day = Time.new(2014, end_day.month, 1)
+    begin_day = Time.new(2014, 1, 1)
     data = YahooFinance.historical_quotes("#{ticker}", begin_day, end_day,{ raw: false, period: :daily })
     data.each do |day|
       curr_day = Day.create(trade_date: day.trade_date, symbol: day.symbol, close: day.close)

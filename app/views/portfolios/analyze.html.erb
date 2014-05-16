@@ -1,7 +1,22 @@
 
+
+<% 2.times do%>
+    <div class="row"></div>
+<% end %>
+
 <div class="container">
   <div class="sixteen columns">
       <table>
+          <tr>
+              <th>Ticker</th>
+              <th>Company</th>
+              <th>Position</th>
+              <th>Px: <%=@begin_date%></th>
+              <th>Px: <%=@end_date%></th>
+              <th>Start Value</th>
+              <th>End Value</th>
+              <th>Perc. Chg</th>
+          </tr>
           <% @full_portfolio_data.each do |stock| %>
           <tr>
               <td class="port_cell left_cell"><%= stock["ticker"] %></td>
@@ -15,5 +30,14 @@
           </tr>
           <% end %>
       </table>
+  </div>
+  <% 2.times do%>
+      <div class="row"></div>
+  <% end %>
+
+  <div class="sixteen columns">
+      Total Beginning Value: <%=@start_val%> </br>
+      Total Ending Value:    <%=@end_val%> </br>
+      Percent Change: <%=@perc_chg%>
   </div>
 </div>
