@@ -16,4 +16,22 @@ class Portfolio < ActiveRecord::Base
     end
     return portfolio_details
   end
+
+  def self.combine_data(portfolio_id)
+    portfolio = Portfolio.find(portfolio_id)
+    combined = []
+    portfolio.stocks.each do |stock|
+      curr_stock = {}
+      curr_stock["stock_id"] = stock.id
+      curr_stock["name"] = stock.name
+      curr_stock["ticker"] = stock.ticker
+      curr_stock["num_shares"] = Share.where(stock_id: stock.id, portfolio_id: portfolio_id).take.num_shares
+      curr_stock["prices"] = Day.get_prices(stock.ticker)
+      combined << curr_stock
+    end
+    return combined
+  end
+
+
+
 end

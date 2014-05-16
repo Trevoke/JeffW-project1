@@ -22,8 +22,9 @@ class PortfoliosController < ApplicationController
   end
 
   def analyze
-
-    @p = params
+    portfolio = Portfolio.find(params.fetch(:id))
+    full_portflio_data = Portfolio.combine_data(portfolio.id)
+    @p = full_portflio_data
   end
 
   private
