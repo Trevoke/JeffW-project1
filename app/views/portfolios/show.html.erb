@@ -1,19 +1,33 @@
 
 
-
-
-<%= @portfolio.name %>
-
-
-
-<form action="/portfolios/<%=@portfolio.id%>/stocks/new" method="get">
-  <button type="submit">Add Stock</button>
-</form>
-
-<% @details.each do |stock| %>
-<div>
-  <%= stock["ticker"] %>
-  <%= stock["name"] %>
-  <%= stock["num_shares"]%>
-</div>
+<% 2.times do%>
+    <div class="row"></div>
 <% end %>
+
+<div class="container">
+    <div class="three columns">
+        <form action="/portfolios/<%=@portfolio.id%>/stocks/new" method="get">
+            <button class="gen_button" type="submit">Add Stock</button>
+        </form>
+    </div>
+    <div class="ten columns offset-by-two">
+        <table>
+            <tr>
+                <th colspan="3" class="port_title"><%=@portfolio.name%> Portfolio</th>
+            </tr>
+            <tr>
+                <th>Ticker</th>
+                <th>Company</th>
+                <th>Position</th>
+            </tr>
+            <% @details.each do |stock| %>
+                <tr>
+                    <td class="port_cell left_cell"><%= stock["ticker"] %></td>
+                    <td class="port_cell left_cell"><%= stock["name"] %></td>
+                    <td class="port_cell"><%= stock["num_shares"]%></td>
+                </tr>
+            <% end %>
+        </table>
+    </div>
+</div>
+
