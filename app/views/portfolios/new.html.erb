@@ -8,13 +8,14 @@
     <%= form_for @portfolio do |f| %>
         <div class="three columns">
             <%= f.submit(class: "gen_button") %>
-            <a href="/portfolios">Back</a>
         </div>
         <div class="seven columns offset-by-two">
             <%= f.label :name %>
             <%= f.text_field :name%>
         </div>
     <% end %>
+    <%= button_to "All portfolios", portfolios_path, method: "get", class: "jeffs_button" %>
+
 
 </div>
 

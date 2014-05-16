@@ -2,6 +2,7 @@ class Stock < ActiveRecord::Base
   has_many :days
   has_many :shares
   has_many :portfolios, through: :shares
+  # validates :ticker, :uniqueness: {scope: investor_id}, presence: true
 
 
   def self.find_list(stock_name)

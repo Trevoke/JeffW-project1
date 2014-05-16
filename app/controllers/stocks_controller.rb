@@ -22,7 +22,15 @@ class StocksController < ApplicationController
   def display
     price_hash = Day.get_prices(params[:sym])
     @sorted_price_array = Hash[price_hash.sort].values
-    @url = Gchart.line(:data => @sorted_price_array, :axis)
+    @url = Gchart.line(:data => @sorted_price_array)
+  end
+
+  def edit
+    @p = params
+  end
+
+  def update
+    redirect_to "/portfolios/#{params.fetch(:portfolio_id)}"
   end
 
   def destroy
