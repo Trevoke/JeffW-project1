@@ -13,6 +13,7 @@ class StocksController < ApplicationController
 
   def show
     stock = Stock.create(ticker: params.fetch(:id), name: params.fetch(:name))
+    stock.update_stock(stock.ticker)
     portfolio = Portfolio.find(params.fetch(:portfolio_id))
     portfolio.shares.create(num_shares: params.fetch(:num_shares), stock_id: stock.id)
     redirect_to "/portfolios/#{portfolio.id}"

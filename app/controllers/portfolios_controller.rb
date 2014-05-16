@@ -21,6 +21,10 @@ class PortfoliosController < ApplicationController
     @details = Portfolio.populate_portfolio(params[:id])
   end
 
+  def analyze
+    @p = params
+  end
+
   private
 
   def portfolio_params

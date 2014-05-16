@@ -2,9 +2,12 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
+  get '/portfolios/analyze' => 'portfolios#analyze'
+
   resources :portfolios do
     resources :stocks, except: [:index]
   end
+
 
 
 
