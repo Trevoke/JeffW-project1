@@ -8,12 +8,11 @@ class ApplicationController < ActionController::Base
     @current_investor = Investor.first
   end
 
-  def populate_days
-    Day.delete_all
-    stocks = Stock.all
-    stocks.each do |stock|
-      stock.update_stock(stock.ticker)
-    end
-  end
+  # def populate_days
+  #   stocks = Stock.all
+  #   stocks.each do |stock|
+  #     stock.update_stock(stock.ticker)
+  #   end
+  # end
 
 end

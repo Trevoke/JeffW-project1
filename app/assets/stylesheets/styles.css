@@ -54,7 +54,10 @@
   padding-top: 10px
 }
 
+.port_h_cell {
+  width: 200px;
+}
 
-form.button_to{
+form.button_to {
   clear: both;
 }
