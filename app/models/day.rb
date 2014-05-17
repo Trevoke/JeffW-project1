@@ -1,5 +1,6 @@
 class Day < ActiveRecord::Base
   belongs_to :stock
+  validates_uniqueness_of :trade_date, scope: :symbol
 
   def self.get_prices(symbol)
     days = Day.where(symbol: symbol).to_a

@@ -13,6 +13,7 @@ class StocksController < ApplicationController
 
   def show
     stock = Stock.create(ticker: params.fetch(:id), name: params.fetch(:name))
+    #stock can be nil
     stock.update_stock(stock.ticker)
     portfolio = Portfolio.find(params.fetch(:portfolio_id))
     portfolio.shares.create(num_shares: params.fetch(:num_shares), stock_id: stock.id)
@@ -26,10 +27,16 @@ class StocksController < ApplicationController
   end
 
   def edit
-    @p = params
+    portfolio = Portfolio.find(params.fetch(:portfolio_id))
+    stock = Stock.find(params.fetch(:id))
+    @share = Share.where(portfolio_id: portfolio.id, stock_id: stock.id).take
   end
 
   def update
+    p=params
+    share = Share.find(params.fetch(:share_id))
+    share.num_shares = params.fetch(:num_shares)
+    share.save
     redirect_to "/portfolios/#{params.fetch(:portfolio_id)}"
   end
 

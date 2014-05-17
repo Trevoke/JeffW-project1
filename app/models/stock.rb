@@ -2,6 +2,7 @@ class Stock < ActiveRecord::Base
   has_many :days
   has_many :shares
   has_many :portfolios, through: :shares
+  validates_uniqueness_of :ticker
   # validates :ticker, :uniqueness: {scope: investor_id}, presence: true
 
 
