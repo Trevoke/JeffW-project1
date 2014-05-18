@@ -5,6 +5,10 @@ class StocksController < ApplicationController
     @stock = Stock.new
   end
 
+  def index
+    @portfolio_id = params.fetch(:portfolio_id)
+  end
+
   def create
     stock_name = stock_params["name"]
     @portfolio_id = params[:portfolio_id]
@@ -13,11 +17,18 @@ class StocksController < ApplicationController
 
   def show
     stock = Stock.create(ticker: params.fetch(:id), name: params.fetch(:name))
-    #stock can be nil
+    if stock.id == nil
+      stock = Stock.find_by(ticker: params.fetch(:id))
+    end
     stock.update_stock(stock.ticker)
     portfolio = Portfolio.find(params.fetch(:portfolio_id))
-    portfolio.shares.create(num_shares: params.fetch(:num_shares), stock_id: stock.id)
-    redirect_to "/portfolios/#{portfolio.id}"
+    curr_share = portfolio.shares.create(num_shares: params.fetch(:num_shares), stock_id: stock.id)
+    if curr_share.id == nil
+      @portfolio_id =  portfolio.id
+      redirect_to "/portfolios/#{@portfolio_id}/stocks"
+    else
+      redirect_to "/portfolios/#{portfolio.id}"
+    end
   end
 
   def display
