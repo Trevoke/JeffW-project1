@@ -20,8 +20,16 @@ class Stock < ActiveRecord::Base
   def update_stock(ticker)
     curr_stock = Stock.find_by ticker: ticker
     end_day = Time.now
-    begin_day = Time.new(2014, 1, 1)
+    if curr_stock.last_update == nil
+      begin_day = Time.new(2012, 1, 1)
+    elsif curr_stock.last_update == end_day.to_date.to_s
+      return 0
+    else
+      begin_day = Date.parse(curr_stock.last_update)+1
+    end
     data = YahooFinance.historical_quotes("#{ticker}", begin_day, end_day,{ raw: false, period: :daily })
+    curr_stock.last_update = end_day.to_date.to_s
+    curr_stock.save
     data.each do |day|
       curr_day = Day.create(trade_date: day.trade_date, symbol: day.symbol, close: day.close)
       curr_stock.days << curr_day

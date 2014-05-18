@@ -17,7 +17,7 @@
       <td class="port_h_cell"><%=result["exchDisp"]%></td>
       <form action="/portfolios/<%=@portfolio_id%>/stocks/<%=result["symbol"]%>" method="get">
           <input type="hidden" name="name" value="<%=result["name"]%>">
-          <td><input type="text" name="num_shares" placeholder="Number of Shares"></td>
+          <td><input type="number" name="num_shares" placeholder="Number of Shares"></td>
           <td><input type="submit"></td>
       </form>
   </tr>

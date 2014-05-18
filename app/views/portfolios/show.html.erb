@@ -7,8 +7,8 @@
 <div class="container">
     <div class="ten columns offset-by-five">
         <form action="/portfolios/analyze/<%=@portfolio.id%>" method="get">
-            <input type="date" name="begin_date">
-            <input type="date" name="end_date">
+            <input type="date" min="2012-01-03" name="begin_date" value="2012-01-03">
+            <input type="date" min="2012-01-01" name="end_date" value="<%=Time.now.to_date.to_s%>">
             <input type="submit">
         </form>
     </div>
