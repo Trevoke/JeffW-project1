@@ -5,20 +5,29 @@
 <% end %>
 
 <div class="container">
-    <div class="ten columns offset-by-five">
-        <form action="/portfolios/analyze/<%=@portfolio.id%>" method="get">
-            <input type="date" min="2012-01-03" name="begin_date" value="2012-01-03">
-            <input type="date" min="2012-01-01" name="end_date" value="<%=Time.now.to_date.to_s%>">
-            <input type="submit">
-        </form>
-    </div>
     <div class="three columns">
         <form action="/portfolios/<%=@portfolio.id%>/stocks/new" method="get">
             <button class="gen_button" type="submit">Add Stock</button>
         </form>
         <%= button_to "All portfolios", portfolios_path, method: "get", class: "gen_button" %>
+        <form action="/portfolios/<%=@portfolio.id%>/edit" method="get">
+            <button class="gen_button" type="submit">Edit Portfolio Name</button>
+        </form>
+        <form action="/portfolios/<%=@portfolio.id%>" method="post">
+            <%= token_tag %>
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" value="Delete Portfolio" class="gen_button">
+        </form>
     </div>
-    <div class="ten columns offset-by-two">
+
+    <div class="ten columns offset-by-one">
+        <form action="/portfolios/analyze/<%=@portfolio.id%>" method="get">
+            <input type="date" min="2012-01-03" name="begin_date" value="2012-01-03">
+            <input type="date" min="2012-01-01" name="end_date" value="<%=Time.now.to_date.to_s%>">
+            <button type="submit"><i class="fa fa-arrow-right"></i></button>
+        </form>
+    </div>
+        <div class="ten columns offset-by-one">
         <table>
             <tr>
                 <th colspan="4" class="port_title"><%=@portfolio.name%> Portfolio</th>
@@ -34,13 +43,13 @@
                     <td class="port_cell left_cell"><%= stock["name"] %></td>
                     <td class="port_cell left_cell"><%= stock["num_shares"]%></td>
                     <td class="port_cell">
-                        <form action="/portfolios/<%=@portfolio.id%>/stocks/<%=stock["id"]%>" method="post">
+                        <form class="port_show" action="/portfolios/<%=@portfolio.id%>/stocks/<%=stock["id"]%>" method="post">
                         <%= token_tag %>
                         <input type="hidden" name="_method" value="delete">
-                        <input type="submit" value="Remove Stock">
+                        <button type="submit"><i class="fa fa-trash-o"></i></button>
                         </form>
-                        <form action="/portfolios/<%=@portfolio.id%>/stocks/<%=stock["id"]%>/edit" method="get">
-                        <input type="submit" value="Edit Stock">
+                        <form class="port_show" action="/portfolios/<%=@portfolio.id%>/stocks/<%=stock["id"]%>/edit" method="get">
+                        <button type="submit"><i class="fa fa-pencil-square-o"></i></button>
                         </form>
                     </td>
                 </tr>
@@ -49,11 +58,7 @@
     </div>
 
     <div class="sixteen columns">
-        <form action="/portfolios/<%=@portfolio.id%>" method="post">
-            <%= token_tag %>
-            <input type="hidden" name="_method" value="delete">
-            <input type="submit" value="Delete Portfolio" class="gen_button">
-        </form>
+
     </div>
 </div>
 

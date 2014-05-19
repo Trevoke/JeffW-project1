@@ -41,6 +41,18 @@ class PortfoliosController < ApplicationController
     @end_date = params.fetch(:end_date)
   end
 
+  def edit
+    @portfolio = Portfolio.find(params.fetch(:id))
+  end
+
+  def update
+    portfolio = Portfolio.find(params.fetch(:id))
+    new_name = portfolio_params["name"]
+    portfolio.name = new_name
+    portfolio.save
+    redirect_to "/portfolios/#{portfolio.id}"
+  end
+
   def destroy
     id = params[:id]
     Portfolio.delete(id)
