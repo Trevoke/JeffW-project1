@@ -1,10 +1,4 @@
 
-Investor.delete_all
-Portfolio.delete_all
-Stock.delete_all
-Day.delete_all
-Share.delete_all
-
 
 i1 = Investor.create(username: 'user1', actualname: 'Lichard Grey')
 # p1 = Portfolio.create(name: 'Tech')
