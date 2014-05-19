@@ -1,6 +1,6 @@
 
 
-i1 = Investor.create(username: 'user1', actualname: 'Lichard Grey')
+#i1 = Investor.create(username: 'user1', actualname: 'Lichard Grey')
 # p1 = Portfolio.create(name: 'Tech')
 
 # i1.portfolios << p1

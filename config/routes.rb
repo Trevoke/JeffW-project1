@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
-  root 'welcome#index'
+  root 'investors#index'
+
+  get '/investors' => 'investors#index'
+  get '/investors/new' => 'investors#new'
+  post '/investors' => 'investors#create'
+
 
   get '/portfolios/analyze/:id' => 'portfolios#analyze'
   get '/stocks/:sym' => 'stocks#display'
@@ -8,6 +13,9 @@ Rails.application.routes.draw do
     resources :stocks
   end
 
+  get 'sessions/new' => 'sessions#new', as: 'log_in'
+  post 'sessions' => 'sessions#create'
+  delete 'sessions' => 'sessions#destroy', as: 'log_out'
 
 
 

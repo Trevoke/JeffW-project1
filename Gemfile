@@ -23,4 +23,5 @@ gem 'font-awesome-rails'
 gem 'yahoo-finance', require: 'yahoo_finance'
 gem 'googlecharts', '~> 1.6.8'
 
+gem 'bcrypt', '~> 3.1.7'
 

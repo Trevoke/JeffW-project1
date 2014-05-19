@@ -1,0 +1,33 @@
+
+<% 5.times do%>
+    <div class="row"></div>
+<% end %>
+
+<div class="container">
+    <div class="sixteen columns gen_center">
+        <form action="/portfolios" method="get">
+          <button class="log_button" type="submit">Login</button>
+        </form>
+    </div>
+</div>
+
+<h2>Welcome</h2>
+
+<% if current_investor %>
+  <p>
+    <%= current_investor.username %> ... is great
+  </p>
+  <%= link_to "Log-Out", log_out_path, method: :delete %>
+<% else%>
+  <%= link_to "Log-In", log_in_path %>
+  <%= link_to "Sign-Up", investors_new_path %>
+<% end %>
+
+
+<ul>
+  <% @investors.each do |investor| %>
+    <li>
+      <%= investor.username %>
+    </li>
+  <% end %>
+</ul>

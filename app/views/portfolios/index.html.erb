@@ -17,7 +17,7 @@
                 <th class="port_h_cell">Portfolio Name</th>
                 <th class="port_h_cell">Date Created</th>
             </tr>
-        <% @current_investor.portfolios.each do |portfolio| %>
+        <% current_investor.portfolios.each do |portfolio| %>
             <tr class="port_list">
                 <td class="port_cell left_cell">
                     <a class="port_link" href="/portfolios/<%=portfolio.id%>"><%= portfolio.name %></a>

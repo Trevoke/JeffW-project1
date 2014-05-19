@@ -3,10 +3,17 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  helper_method :current_investor
+
 # temp way of obtaining user.  only for one user.  needs to be fixed.
   def current_investor
-    @current_investor = Investor.first
+    Investor.find(session[:investor_id]) if session[:investor_id]
   end
+
+  # def authorize
+  #   redirect_to root_path if current_investor.nil?
+  # end
+
 
   # def populate_days
   #   stocks = Stock.all
