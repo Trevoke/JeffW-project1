@@ -17,8 +17,14 @@ class InvestorsController < ApplicationController
   end
 
   def create
-    Investor.create(investor_params)
-    redirect_to root_path
+    #test here for uniqueness of user name?
+    new_investor = Investor.create(investor_params)
+    if new_investor.id != nil
+      session[:investor_id] = new_investor.id
+      redirect_to portfolios_path
+    else
+      redirect_to investors_new_path
+    end
   end
 
 

@@ -7,31 +7,35 @@ class ApplicationController < ActionController::Base
     Investor.find(session[:investor_id]) if session[:investor_id]
   end
 
+  def authorize(investor_id)
+    if investor_id != current_investor.id
+      redirect_to root_path
+    end
+  end
+
 end
 
-
-#                root GET    /                                                   investors#index
-#            investors GET    /investors(.:format)                                investors#index
-#        investors_new GET    /investors/new(.:format)                            investors#new
-#                      POST   /investors(.:format)                                investors#create
-#                      GET    /portfolios/analyze/:id(.:format)                   portfolios#analyze
-#                      GET    /stocks/:sym(.:format)                              stocks#display
-#     portfolio_stocks GET    /portfolios/:portfolio_id/stocks(.:format)          stocks#index
-#                      POST   /portfolios/:portfolio_id/stocks(.:format)          stocks#create
-#  new_portfolio_stock GET    /portfolios/:portfolio_id/stocks/new(.:format)      stocks#new
-# edit_portfolio_stock GET    /portfolios/:portfolio_id/stocks/:id/edit(.:format) stocks#edit
-#      portfolio_stock GET    /portfolios/:portfolio_id/stocks/:id(.:format)      stocks#show
-#                      PATCH  /portfolios/:portfolio_id/stocks/:id(.:format)      stocks#update
-#                      PUT    /portfolios/:portfolio_id/stocks/:id(.:format)      stocks#update
-#                      DELETE /portfolios/:portfolio_id/stocks/:id(.:format)      stocks#destroy
-#           portfolios GET    /portfolios(.:format)                               portfolios#index
-#                      POST   /portfolios(.:format)                               portfolios#create
-#        new_portfolio GET    /portfolios/new(.:format)                           portfolios#new
-#       edit_portfolio GET    /portfolios/:id/edit(.:format)                      portfolios#edit
-#            portfolio GET    /portfolios/:id(.:format)                           portfolios#show
-#                      PATCH  /portfolios/:id(.:format)                           portfolios#update
-#                      PUT    /portfolios/:id(.:format)                           portfolios#update
-#                      DELETE /portfolios/:id(.:format)                           portfolios#destroy
-#               log_in GET    /sessions/new(.:format)                             sessions#new
-#             sessions POST   /sessions(.:format)                                 sessions#create
-#              log_out DELETE /sessions(.:format)                                 sessions#destroy
+#                root GET    /                                                    sessions#new
+#        investors_new GET    /investors/new(.:format)                            investors#new check, ok open to all
+#            investors POST   /investors(.:format)                                investors#create check, ok not seen
+#                      GET    /portfolios/analyze/:id(.:format)                   portfolios#analyze check, need to check security
+#                      GET    /stocks/:sym(.:format)                              stocks#display check, need to check security
+#                      GET    /portfolios/:portfolio_id/stocks/exists(.:format)   stocks#exists check, self protecting
+#                      POST   /portfolios/:portfolio_id/stocks(.:format)          stocks#create check, self protecting
+#  new_portfolio_stock GET    /portfolios/:portfolio_id/stocks/new(.:format)      stocks#new check, ok put auth in
+# edit_portfolio_stock GET    /portfolios/:portfolio_id/stocks/:id/edit(.:format) stocks#edit check, ok put auth in
+#      portfolio_stock GET    /portfolios/:portfolio_id/stocks/:id(.:format)      stocks#show check, ok self protecting
+#                      PATCH  /portfolios/:portfolio_id/stocks/:id(.:format)      stocks#update check, need to clean up path
+#                      PUT    /portfolios/:portfolio_id/stocks/:id(.:format)      stocks#update check, need to clean up path
+#                      DELETE /portfolios/:portfolio_id/stocks/:id(.:format)      stocks#destroy check, not seen
+#           portfolios GET    /portfolios(.:format)                               portfolios#index check, ok will error without anyway
+#                      POST   /portfolios(.:format)                               portfolios#create check, ok not seen
+#        new_portfolio GET    /portfolios/new(.:format)                           portfolios#new check, ok, put auth in
+#       edit_portfolio GET    /portfolios/:id/edit(.:format)                      portfolios#edit check, ok, put auth in
+#            portfolio GET    /portfolios/:id(.:format)                           portfolios#show check, ok, put auth in
+#                      PATCH  /portfolios/:id(.:format)                           portfolios#update check, ok not seen
+#                      PUT    /portfolios/:id(.:format)                           portfolios#update check, ok not seen
+#                      DELETE /portfolios/:id(.:format)                           portfolios#destroy check, ok not seen
+#               log_in GET    /sessions/new(.:format)                             sessions#new  check, ok open to all
+#             sessions POST   /sessions(.:format)                                 sessions#create  check, ok not seen
+#              log_out DELETE /sessions(.:format)                                 sessions#destroy check, ok not seen

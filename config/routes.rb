@@ -5,16 +5,17 @@ Rails.application.routes.draw do
   get '/investors/new' => 'investors#new'
   post '/investors' => 'investors#create'
 
-
+  get '/portfolios/:portfolio_id/stocks/exists' => 'stocks#exists'
   get '/portfolios/analyze/:id' => 'portfolios#analyze'
   get '/stocks/:sym' => 'stocks#display'
   resources :portfolios do
-    resources :stocks
+    resources :stocks, except: [:index]
   end
 
-  get 'sessions/new' => 'sessions#new', as: 'log_in'
-  post 'sessions' => 'sessions#create'
-  delete 'sessions' => 'sessions#destroy', as: 'log_out'
+
+  get '/sessions/new' => 'sessions#new', as: 'log_in'
+  post '/sessions' => 'sessions#create'
+  delete '/sessions' => 'sessions#destroy', as: 'log_out'
 
 
 

@@ -6,14 +6,14 @@
 
 <div class="container">
     <div class="three columns">
-        <form action="/portfolios/<%=@portfolio.id%>/stocks/new" method="get">
+        <form action="<%=new_portfolio_stock_path(@portfolio.id)%>" method="get">
             <button class="gen_button" type="submit">Add Stock</button>
         </form>
         <%= button_to "All portfolios", portfolios_path, method: "get", class: "gen_button" %>
-        <form action="/portfolios/<%=@portfolio.id%>/edit" method="get">
+        <form action="<%=edit_portfolio_path(@portfolio.id)%>" method="get">
             <button class="gen_button" type="submit">Edit Portfolio Name</button>
         </form>
-        <form action="/portfolios/<%=@portfolio.id%>" method="post">
+        <form action="<%=portfolio_path(@portfolio.id)%>" method="post">
             <%= token_tag %>
             <input type="hidden" name="_method" value="delete">
             <input type="submit" value="Delete Portfolio" class="gen_button">
@@ -43,12 +43,12 @@
                     <td class="port_cell left_cell"><%= stock["name"] %></td>
                     <td class="port_cell left_cell"><%= stock["num_shares"]%></td>
                     <td class="port_cell">
-                        <form class="port_show" action="/portfolios/<%=@portfolio.id%>/stocks/<%=stock["id"]%>" method="post">
+                        <form class="port_show" action="<%=portfolio_stock_path(@portfolio.id, stock["id"])%>" method="post">
                         <%= token_tag %>
                         <input type="hidden" name="_method" value="delete">
                         <button type="submit"><i class="fa fa-trash-o"></i></button>
                         </form>
-                        <form class="port_show" action="/portfolios/<%=@portfolio.id%>/stocks/<%=stock["id"]%>/edit" method="get">
+                        <form class="port_show" action="<%=edit_portfolio_stock_path(@portfolio.id, stock["id"])%>" method="get">
                         <button type="submit"><i class="fa fa-pencil-square-o"></i></button>
                         </form>
                     </td>

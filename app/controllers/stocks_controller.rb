@@ -2,10 +2,11 @@
 class StocksController < ApplicationController
   def new
     @portfolio = Portfolio.find(params.fetch(:portfolio_id))
+    authorize(@portfolio.investor_id)
     @stock = Stock.new
   end
 
-  def index
+  def exists
     @portfolio_id = params.fetch(:portfolio_id)
   end
 
@@ -25,7 +26,7 @@ class StocksController < ApplicationController
     curr_share = portfolio.shares.create(num_shares: params.fetch(:num_shares), stock_id: stock.id)
     if curr_share.id == nil
       @portfolio_id =  portfolio.id
-      redirect_to "/portfolios/#{@portfolio_id}/stocks"
+      redirect_to "/portfolios/#{@portfolio_id}/stocks/exists"
     else
       redirect_to "/portfolios/#{portfolio.id}"
     end
@@ -39,6 +40,7 @@ class StocksController < ApplicationController
 
   def edit
     portfolio = Portfolio.find(params.fetch(:portfolio_id))
+    authorize(portfolio.investor_id)
     stock = Stock.find(params.fetch(:id))
     @share = Share.where(portfolio_id: portfolio.id, stock_id: stock.id).take
   end

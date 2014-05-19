@@ -25,3 +25,4 @@ gem 'googlecharts', '~> 1.6.8'
 
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'rubyvis'

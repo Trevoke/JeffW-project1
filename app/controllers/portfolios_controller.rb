@@ -8,12 +8,13 @@ class PortfoliosController < ApplicationController
 
   def new
     @portfolio = Portfolio.new
+    authorize(current_investor.id)
   end
 
   def create
     new_portfolio = Portfolio.create(portfolio_params)
     current_investor.portfolios << new_portfolio
-    redirect_to "/portfolios/#{new_portfolio.id}"
+    redirect_to portfolio_path(new_portfolio.id)
   end
 
   def show
@@ -28,6 +29,9 @@ class PortfoliosController < ApplicationController
     @full_portfolio_data = Portfolio.combine_data(portfolio.id)
     @start_val = 0
     @end_val = 0
+
+    #if Date.parse(params[:begin_date]).monday? |
+
     @full_portfolio_data.each do |stock|
       stock["begin_price"] = stock["prices"][params.fetch(:begin_date)]
       stock["end_price"] = stock["prices"][params.fetch(:end_date)]
@@ -45,6 +49,7 @@ class PortfoliosController < ApplicationController
 
   def edit
     @portfolio = Portfolio.find(params.fetch(:id))
+    authorize(@portfolio.investor_id)
   end
 
   def update
@@ -68,9 +73,5 @@ class PortfoliosController < ApplicationController
     params.require(:portfolio).permit(:name)
   end
 
-  def authorize(investor_id)
-    if investor_id != current_investor.id
-      redirect_to root_path
-    end
-  end
+
 end

@@ -7,7 +7,7 @@
 
 <div class="container">
     <div class="three columns">
-        <form action="/portfolios/new" method="get">
+        <form action="<%= new_portfolio_path %>" method="get">
           <button class="gen_button" type="submit">Create New</button>
         </form>
     </div>
@@ -20,7 +20,7 @@
         <% current_investor.portfolios.each do |portfolio| %>
             <tr class="port_list">
                 <td class="port_cell left_cell">
-                    <a class="port_link" href="/portfolios/<%=portfolio.id%>"><%= portfolio.name %></a>
+                    <a class="port_link" href="<%=portfolio_path(portfolio.id)%>"><%= portfolio.name %></a>
                 </td>
                 <td class="port_cell">
                     <%= portfolio.created_at.to_date %>
