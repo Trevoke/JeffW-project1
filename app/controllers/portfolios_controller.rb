@@ -19,13 +19,12 @@ class PortfoliosController < ApplicationController
   def show
     @portfolio = Portfolio.find(params[:id])
     @details = Portfolio.populate_portfolio(params[:id])
-    if @portfolio.investor_id != current_investor.id
-      redirect_to root_path
-    end
+    authorize(@portfolio.investor_id)
   end
 
   def analyze
     portfolio = Portfolio.find(params.fetch(:id))
+    authorize(portfolio.investor_id)
     @full_portfolio_data = Portfolio.combine_data(portfolio.id)
     @start_val = 0
     @end_val = 0
@@ -69,4 +68,9 @@ class PortfoliosController < ApplicationController
     params.require(:portfolio).permit(:name)
   end
 
+  def authorize(investor_id)
+    if investor_id != current_investor.id
+      redirect_to root_path
+    end
+  end
 end

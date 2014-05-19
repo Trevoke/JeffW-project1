@@ -2,7 +2,9 @@
 class SessionsController < ApplicationController
 
   def new
-    # go to log-in form
+    if current_investor
+      redirect_to '/portfolios'
+    end
   end
 
   def create

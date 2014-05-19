@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
-  root 'investors#index'
+  root 'sessions#new'
 
-  get '/investors' => 'investors#index'
   get '/investors/new' => 'investors#new'
   post '/investors' => 'investors#create'
 

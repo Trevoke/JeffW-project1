@@ -5,7 +5,11 @@ class InvestorsController < ApplicationController
 
   def index
     @investor = current_investor
-    @investors = Investor.all
+    if current_investor
+      redirect_to '/portfolios'
+    else
+      redirect_to '/sessions/new'
+    end
   end
 
   def new
