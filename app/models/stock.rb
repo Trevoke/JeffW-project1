@@ -25,7 +25,7 @@ class Stock < ActiveRecord::Base
     elsif curr_stock.last_update == end_day.to_date.to_s
       return 0
     else
-      begin_day = Date.parse(curr_stock.last_update)+1
+      begin_day = Date.parse(curr_stock.last_update)
     end
     data = YahooFinance.historical_quotes("#{ticker}", begin_day, end_day,{ raw: false, period: :daily })
     curr_stock.last_update = end_day.to_date.to_s
@@ -64,8 +64,8 @@ class Stock < ActiveRecord::Base
 
 w = 400
 h = 200
-x = pv.Scale.linear(data, lambda {|d| d.x}).range(0, w)
-
+#x = pv.Scale.linear(data, lambda {|d| d.x}).range(0, w)
+x = pv.Scale.linear(0,10).range(0, w)
 
 y = pv.Scale.linear(1, 4).range(0, h);
 
