@@ -34,8 +34,14 @@ class StocksController < ApplicationController
   end
 
   def display
-    @price_hash = Day.get_prices(params[:sym]).sort
-    @sorted_price_array = Hash[@price_hash.sort].values
+    @p = params
+    price_hash = Day.get_prices(params[:sym]).sort
+
+    @prices_for_range = price_hash.select do |k,v|
+      k >= params.fetch(:chart_begin_date) && k<= params.fetch(:chart_end_date)
+    end
+
+    @sorted_price_array = Hash[@prices_for_range.sort].values
 
     #@url = Gchart.line(:data => @sorted_price_array)
     @x = Stock.m2(@sorted_price_array)

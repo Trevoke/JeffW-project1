@@ -1,4 +1,6 @@
 
+<%= @p %>
+
 <% 2.times do%>
     <div class="row"></div>
 <% end %>
@@ -10,7 +12,7 @@
       <%= raw @x %>
   </div>
   <table>
-  <% @price_hash.each do |k, v| %>
+  <% @prices_for_range.each do |k, v| %>
     <tr>
       <td class="chart_cell left_cell"><%= k %></td>
       <td class="chart_cell"><%= v %></td>
