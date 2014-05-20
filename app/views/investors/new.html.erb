@@ -1,10 +1,17 @@
 
-<%= form_for @investor do |f| %>
-  <%= f.label :username %>
-  <%= f.text_field :username %>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
-  <%= f.submit %>
+
+<% 3.times do%>
+    <div class="row"></div>
 <% end %>
+
+
+<div class="container">
+    <div class="sixteen columns login">
+        <%= form_for @investor do |f| %>
+          <%= f.text_field :username, placeholder: 'User Name', class: "gen_marg" %>
+          <%= f.password_field :password, placeholder: 'Password', class: "gen_marg" %>
+          <%= f.password_field :password_confirmation, placeholder: 'Password Confirmation', class: "gen_marg" %>
+          <%= f.submit %>
+        <% end %>
+    </div>
+</div>

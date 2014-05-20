@@ -12,7 +12,7 @@
 }
 
 .log_button {
-  width: 300px;
+  width: 100px;
   font-size: 16px;
 }
 
@@ -68,4 +68,50 @@ form.button_to {
 
 .chart {
   text-align: center;
+}
+
+.login {
+  text-align: center;
+}
+
+input[type="text"].gen_marg, input[type="password"].gen_marg {
+  margin: 0 auto;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+form {
+  display: inline;
+}
+
+.sign_up_button {
+  width: 76px;
+  height: 20px;
+  font-size: 12px;
+  padding: 0;
+  float: right;
+}
+
+.new_user {
+  font-size: 12px;
+  float: right;
+}
+
+input[type="submit"].log_button {
+  font-size: 14px;
+}
+
+.number {
+  text-align: right;
+}
+
+.num_label, .number {
+  font-size: 16px;
+  padding: 5px;
+
+}
+
+.to_chart {
+  background-color: white;
+  border: none;
 }

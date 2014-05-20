@@ -63,8 +63,8 @@ class Stock < ActiveRecord::Base
     }
 
 
-    w = 800
-    h = 400
+    w = 600
+    h = 300
     x = pv.Scale.linear(1,num_prices).range(0, w)
 
     low = prices.min

@@ -21,23 +21,42 @@
           <tr>
               <td class="port_cell left_cell"><a href="/stocks/<%=stock["ticker"]%>"><%= stock["ticker"] %></a></td>
               <td class="port_cell left_cell"><%= stock["name"] %></td>
-              <td class="port_cell left_cell"><%= stock["num_shares"] %></td>
-              <td class="port_cell left_cell"><%= stock["begin_price"] %></td>
-              <td class="port_cell left_cell"><%= stock["end_price"] %></td>
-              <td class="port_cell left_cell"><%= stock["begin_value"] %></td>
-              <td class="port_cell left_cell"><%= stock["end_value"] %></td>
-              <td class="port_cell"><%= stock["perc_change"] %></td>
+              <td class="port_cell left_cell"><%= number_with_precision(stock["num_shares"], precision: 0, delimiter: ',') %></td>
+              <td class="port_cell left_cell">$<%= number_with_precision(stock["begin_price"], precision: 2, delimiter: ',') %></td>
+              <td class="port_cell left_cell">$<%= number_with_precision(stock["end_price"], precision: 2, delimiter: ',') %></td>
+              <td class="port_cell left_cell">$<%= number_with_precision(stock["begin_value"], precision: 2, delimiter: ',') %></td>
+              <td class="port_cell left_cell">$<%= number_with_precision(stock["end_value"], precision: 2, delimiter: ',') %></td>
+              <td class="port_cell"><%= number_to_percentage(stock["perc_change"], precision: 2) %></td>
           </tr>
           <% end %>
       </table>
   </div>
-  <% 2.times do%>
+  <% 3.times do%>
       <div class="row"></div>
   <% end %>
 
-  <div class="sixteen columns">
-      Total Beginning Value: <%=@portfolio_aggregate["start_val"]%> </br>
-      Total Ending Value:    <%=@portfolio_aggregate["end_val"]%> </br>
-      Percent Change: <%=@portfolio_aggregate["perc_chg"]%>
+  <div class="twelve columns offset-by-two">
+      <div class="five columns num_label">
+          Total Beginning Value:
+      </div>
+      <div class="two columns number">
+          $<%=number_with_precision(@portfolio_aggregate["start_val"], precision: 2, delimiter: ',')%>
+      </div>
+  </div>
+  <div class="twelve columns offset-by-two">
+      <div class="five columns num_label">
+          Total Ending Value:
+      </div>
+      <div class="two columns number">
+          $<%=number_with_precision(@portfolio_aggregate["end_val"], precision: 2, delimiter: ',')%>
+      </div>
+  </div>
+  <div class="twelve columns offset-by-two">
+      <div class="five columns num_label">
+          Percent Change:
+      </div>
+      <div class="two columns number">
+          <%=number_to_percentage(@portfolio_aggregate["perc_chg"], precision: 2)%>
+      </div>
   </div>
 </div>

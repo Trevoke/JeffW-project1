@@ -33,13 +33,19 @@
                 <th colspan="4" class="port_title"><%=@portfolio.name%> Portfolio</th>
             </tr>
             <tr>
-                <th>Ticker</th>
-                <th>Company</th>
-                <th>Position</th>
+                <th class="port_cell">Ticker</th>
+                <th class="port_cell">Company</th>
+                <th class="port_cell">Position</th>
             </tr>
             <% @details.each do |stock| %>
                 <tr>
-                    <td class="port_cell left_cell"><a href="/stocks/<%=stock["ticker"]%>"><%= stock["ticker"] %></a></td>
+                    <td class="port_cell left_cell">
+                        <form action="/stocks/<%=stock["ticker"]%>" method="get">
+                            <input type="hidden" name="chart_begin_date" value="2012-01-03">
+                            <input type="hidden" name="chart_end_date" value="<%=Time.now.to_date.to_s%>">
+                            <button type="submit" class="to_chart"><%=stock["ticker"]%></button>
+                        </form>
+                    </td>
                     <td class="port_cell left_cell"><%= stock["name"] %></td>
                     <td class="port_cell left_cell"><%= stock["num_shares"]%></td>
                     <td class="port_cell">
