@@ -6,14 +6,14 @@
 
 
 <div class="container">
-  <div class="sixteen columns">
+  <div class="sixteen columns chart">
       <%= raw @x %>
   </div>
   <table>
   <% @price_hash.each do |k, v| %>
     <tr>
-      <td><%= k %></td>
-      <td><%= v %></td>
+      <td class="chart_cell left_cell"><%= k %></td>
+      <td class="chart_cell"><%= v %></td>
     </tr>
   <% end %>
 </table>
