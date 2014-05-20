@@ -17,7 +17,7 @@
               <th>End Value</th>
               <th>Perc. Chg</th>
           </tr>
-          <% @full_portfolio_data.each do |stock| %>
+          <% @final.each do |stock| %>
           <tr>
               <td class="port_cell left_cell"><a href="/stocks/<%=stock["ticker"]%>"><%= stock["ticker"] %></a></td>
               <td class="port_cell left_cell"><%= stock["name"] %></td>
@@ -36,8 +36,8 @@
   <% end %>
 
   <div class="sixteen columns">
-      Total Beginning Value: <%=@start_val%> </br>
-      Total Ending Value:    <%=@end_val%> </br>
-      Percent Change: <%=@perc_chg%>
+      Total Beginning Value: <%=@portfolio_aggregate["start_val"]%> </br>
+      Total Ending Value:    <%=@portfolio_aggregate["end_val"]%> </br>
+      Percent Change: <%=@portfolio_aggregate["perc_chg"]%>
   </div>
 </div>

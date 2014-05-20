@@ -34,6 +34,33 @@ class Portfolio < ActiveRecord::Base
     return combined
   end
 
+  def self.calculate_summary(full_portfolio_data)
+    full_portfolio_data.each do |stock|
+      stock["begin_price"] = stock["prices"][stock["begin_date"]]
+      stock["end_price"] = stock["prices"][stock["end_date"]]
+      stock["begin_value"]= (stock["begin_price"] * stock["num_shares"])
+      stock["end_value"]=(stock["end_price"] * stock["num_shares"])
+      stock["perc_change"]= (stock["end_value"]/stock["begin_value"]-1) * 100
+    end
+    return full_portfolio_data
+  end
+
+  def self.aggregate(final)
+    start_val = 0
+    end_val = 0
+    final.each do |stock|
+      start_val += stock["begin_value"]
+      end_val += stock["end_value"]
+    end
+
+    aggregate = {}
+    aggregate["start_val"] = start_val
+    aggregate["end_val"] = end_val
+    aggregate["perc_chg"] = (end_val/start_val - 1) * 100
+
+    return aggregate
+
+  end
 
 
 end

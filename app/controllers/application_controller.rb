@@ -18,7 +18,7 @@ end
 #                root GET    /                                                    sessions#new
 #        investors_new GET    /investors/new(.:format)                            investors#new check, ok open to all
 #            investors POST   /investors(.:format)                                investors#create check, ok not seen
-#                      GET    /portfolios/analyze/:id(.:format)                   portfolios#analyze check, need to check security
+#                      GET    /portfolios/analyze/:id(.:format)                   portfolios#analyze check, put auth in
 #                      GET    /stocks/:sym(.:format)                              stocks#display check, ok open to all
 #                      GET    /portfolios/:portfolio_id/stocks/exists(.:format)   stocks#exists check, self protecting
 #                      POST   /portfolios/:portfolio_id/stocks(.:format)          stocks#create check, self protecting

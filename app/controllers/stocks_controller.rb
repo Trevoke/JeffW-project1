@@ -25,6 +25,7 @@ class StocksController < ApplicationController
     portfolio = Portfolio.find(params.fetch(:portfolio_id))
     curr_share = portfolio.shares.create(num_shares: params.fetch(:num_shares), stock_id: stock.id)
     if curr_share.id == nil
+      #not sure next line is needed.  also perhaps use notice/alert here instead
       @portfolio_id =  portfolio.id
       redirect_to "/portfolios/#{@portfolio_id}/stocks/exists"
     else
@@ -36,7 +37,7 @@ class StocksController < ApplicationController
     @price_hash = Day.get_prices(params[:sym]).sort
     @sorted_price_array = Hash[@price_hash.sort].values
 
-    @url = Gchart.line(:data => @sorted_price_array)
+    #@url = Gchart.line(:data => @sorted_price_array)
     @x = Stock.m2(@sorted_price_array)
   end
 
