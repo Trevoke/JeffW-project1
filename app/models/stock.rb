@@ -63,8 +63,8 @@ class Stock < ActiveRecord::Base
 }
 
 
-w = 400
-h = 200
+w = 600
+h = 300
 #x = pv.Scale.linear(data, lambda {|d| d.x}).range(0, w)
 x = pv.Scale.linear(1,num_prices).range(0, w)
 
@@ -100,9 +100,9 @@ vis = pv.Panel.new() do
     left(x)
     bottom(-5)
     height(5)
-    label(:anchor=>'bottom') {
-      text(x.tick_format)
-    }
+    #label(:anchor=>'bottom') {
+    #  text(x.tick_format)
+    #}
   end
 
 #/* The area with top line. */
@@ -112,6 +112,7 @@ vis = pv.Panel.new() do
     a.left {|d| x.scale(d.x)}
     a.height {|d| y.scale(d.y)}
     a.fill_style("rgb(121,173,210)")
+    #a.fill_style("rgb(200,200,200)")
     a.line(:anchor=>'top') {
       line_width(3)
     }
