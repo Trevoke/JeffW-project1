@@ -6,14 +6,24 @@
 
 
 <div class="container">
-  <div class="sixteen columns">
+  <div class="seven columns">
       <img src="<%=@url%>">
   </div>
-  <%= @sorted_price_array%>
+  <div class="seven columns">
+      <%= raw @x %>
+  </div>
+  <table>
+  <% @price_hash.each do |k, v| %>
+    <tr>
+      <td><%= k %></td>
+      <td><%= v %></td>
+    </tr>
+  <% end %>
+</table>
 </div>
 
 
-<%= raw @x %>
+
 
 <br/>
 <br/>

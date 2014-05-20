@@ -56,18 +56,23 @@ class Stock < ActiveRecord::Base
   end
 
 
-  def self.m2
-    data = pv.range(0, 10, 0.1).map {|x|
-  OpenStruct.new({:x=> x, :y=> Math.sin(x) + 2+ rand()})
+  def self.m2(prices)
+    num_prices = prices.count
+    data = pv.range(1, num_prices, 1).map {|x|
+  OpenStruct.new({:x=> x, :y=> prices[x-1]})
 }
 
 
 w = 400
 h = 200
 #x = pv.Scale.linear(data, lambda {|d| d.x}).range(0, w)
-x = pv.Scale.linear(0,10).range(0, w)
+x = pv.Scale.linear(1,num_prices).range(0, w)
 
-y = pv.Scale.linear(1, 4).range(0, h);
+low = prices.min
+high = prices.max
+
+
+y = pv.Scale.linear(low, high).range(0, h);
 
 #The root panel
 vis = pv.Panel.new() do
