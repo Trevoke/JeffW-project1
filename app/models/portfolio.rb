@@ -2,6 +2,7 @@ class Portfolio < ActiveRecord::Base
   belongs_to :investor
   has_many :shares
   has_many :stocks, through: :shares
+  validates :name, presence: true
 
   def self.populate_portfolio(portfolio_id)
     portfolio = Portfolio.find(portfolio_id)

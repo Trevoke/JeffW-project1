@@ -11,8 +11,12 @@ class PortfoliosController < ApplicationController
 
   def create
     new_portfolio = Portfolio.create(portfolio_params)
-    current_investor.portfolios << new_portfolio
-    redirect_to portfolio_path(new_portfolio.id)
+    if new_portfolio.id == nil
+      redirect_to new_portfolio_path, alert: 'Name cannot be blank'
+    else
+      current_investor.portfolios << new_portfolio
+      redirect_to portfolio_path(new_portfolio.id)
+    end
   end
 
   def show
@@ -46,9 +50,13 @@ class PortfoliosController < ApplicationController
   def update
     portfolio = Portfolio.find(params.fetch(:id))
     new_name = portfolio_params["name"]
-    portfolio.name = new_name
-    portfolio.save
-    redirect_to portfolio_path(portfolio.id)
+    if new_name == ""
+      redirect_to edit_portfolio_path(portfolio.id), alert: 'Name cannot be blank'
+    else
+      portfolio.name = new_name
+      portfolio.save
+      redirect_to portfolio_path(portfolio.id)
+    end
   end
 
   def destroy

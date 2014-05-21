@@ -10,20 +10,27 @@ class StocksController < ApplicationController
     stock_name = stock_params["name"]
     @portfolio_id = params[:portfolio_id]
     @list = Stock.find_list(stock_name)
+    if @list.empty?
+      redirect_to new_portfolio_stock_path(@portfolio_id), alert: 'Stock name cannot be blank.'
+    end
   end
 
   def show
-    stock = Stock.create(ticker: params.fetch(:id), name: params.fetch(:name))
-    if stock.id == nil
-      stock = Stock.find_by(ticker: params.fetch(:id))
-    end
-    stock.update_stock(stock.ticker)
-    portfolio = Portfolio.find(params.fetch(:portfolio_id))
-    curr_share = portfolio.shares.create(num_shares: params.fetch(:num_shares), stock_id: stock.id)
-    if curr_share.id == nil
-      redirect_to portfolio_path(portfolio.id), alert: 'Stock already in your portfolio.  Please use Edit to change number of shares.'
+    if params.fetch(:num_shares) == ""
+      redirect_to portfolio_path(params.fetch(:portfolio_id)), alert: 'Please enter a number of shares'
     else
-      redirect_to portfolio_path(portfolio.id)
+      stock = Stock.create(ticker: params.fetch(:id), name: params.fetch(:name))
+      if stock.id == nil
+        stock = Stock.find_by(ticker: params.fetch(:id))
+      end
+      stock.update_stock(stock.ticker)
+      portfolio = Portfolio.find(params.fetch(:portfolio_id))
+      curr_share = portfolio.shares.create(num_shares: params.fetch(:num_shares), stock_id: stock.id)
+      if curr_share.id == nil
+        redirect_to portfolio_path(portfolio.id), alert: 'Stock already in your portfolio.  Please use Edit to change number of shares.'
+      else
+        redirect_to portfolio_path(portfolio.id)
+      end
     end
   end
 
@@ -55,11 +62,14 @@ class StocksController < ApplicationController
 
   def update
     p=params
-    share = Share.find(params.fetch(:share_id))
-    share.num_shares = params.fetch(:num_shares)
-    share.save
-    #redirect_to "/portfolios/#{params.fetch(:portfolio_id)}"
-    redirect_to portfolio_path(params.fetch(:portfolio_id))
+    if params.fetch(:num_shares)==""
+      redirect_to portfolio_path(params.fetch(:portfolio_id)), alert: 'Please enter a number of shares'
+    else
+      share = Share.find(params.fetch(:share_id))
+      share.num_shares = params.fetch(:num_shares)
+      share.save
+      redirect_to portfolio_path(params.fetch(:portfolio_id))
+    end
   end
 
   def destroy
@@ -67,7 +77,6 @@ class StocksController < ApplicationController
     portfolio_id = params[:portfolio_id]
     share = Share.where(portfolio_id: portfolio_id, stock_id: stock_id).take
     Share.delete(share.id)
-    #redirect_to "/portfolios/#{portfolio_id}"
     redirect_to portfolio_path(portfolio_id)
   end
 

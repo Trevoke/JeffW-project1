@@ -4,6 +4,7 @@ class Investor < ActiveRecord::Base
   has_many :stocks, through: :portfolios
   has_many :shares, through: :portfolios
   validates_uniqueness_of :username
+  validates :username, presence: true
 
 
   def self.authorize(investor_id)

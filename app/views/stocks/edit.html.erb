@@ -9,7 +9,7 @@
             <%= token_tag %>
             <input type="hidden" name="_method" value="put">
             <input type="hidden" name="share_id" value="<%=@share.id%>">
-            <input type="text" name="num_shares" value="<%=@share.num_shares%>" class="gen_marg">
+            <input type="number" name="num_shares" value="<%=@share.num_shares%>" class="gen_marg">
             <input type="submit">
         </form>
     </div>
