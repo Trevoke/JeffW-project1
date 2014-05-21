@@ -2,7 +2,7 @@
 
 <div class="container">
     <div class="sixteen columns">
-        <%= button_to "All portfolios", portfolios_path, method: "get", class: "gen_button" %>
+        <%= button_to "Back to Portfolio", portfolio_path(@portfolio.id), method: "get", class: "gen_button" %>
     </div>
     <div class="sixteen columns chart">
         <h3><%=@symbol%></h3>
@@ -11,6 +11,7 @@
         <form action="/stocks/<%=@symbol%>" method="get">
             <input type="date" min="2012-01-01" name="chart_begin_date" value="<%=@b_date%>">
             <input type="date" min="2012-01-01" name="chart_end_date" value="<%=@e_date%>">
+            <input type="hidden" name="portfolio_id" value="<%=@portfolio.id%>">
             <button type="submit"><i class="fa fa-arrow-right"></i></button>
         </form>
     </div>

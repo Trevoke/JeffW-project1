@@ -24,11 +24,11 @@ class PortfoliosController < ApplicationController
   end
 
   def analyze
-    portfolio = Portfolio.find(params.fetch(:id))
-    authorize(portfolio.investor_id)
+    @portfolio = Portfolio.find(params.fetch(:id))
+    authorize(@portfolio.investor_id)
     @begin_date = params.fetch(:begin_date)
     @end_date = params.fetch(:end_date)
-    full_portfolio_data = Portfolio.combine_data(portfolio.id)
+    full_portfolio_data = Portfolio.combine_data(@portfolio.id)
     full_portfolio_data.each do |stock|
       #maybe something here that says end_date has te be after begin_date?
       stock["begin_date"] = Day.verify_begin_date(params.fetch(:begin_date), stock["ticker"])

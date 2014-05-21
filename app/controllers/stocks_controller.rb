@@ -34,6 +34,8 @@ class StocksController < ApplicationController
   end
 
   def display
+    @portfolio = Portfolio.find(params.fetch(:portfolio_id))
+    authorize(@portfolio.investor_id)
     @symbol = params.fetch(:sym)
     @b_date = params.fetch(:chart_begin_date)
     @e_date = params.fetch(:chart_end_date)

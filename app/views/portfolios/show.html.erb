@@ -43,6 +43,7 @@
                         <form action="/stocks/<%=stock["ticker"]%>" method="get">
                             <input type="hidden" name="chart_begin_date" value="2012-01-03">
                             <input type="hidden" name="chart_end_date" value="<%=Time.now.to_date.to_s%>">
+                            <input type="hidden" name="portfolio_id" value="<%=@portfolio.id%>">
                             <button type="submit" class="to_chart"><%=stock["ticker"]%></button>
                         </form>
                     </td>
