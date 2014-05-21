@@ -11,15 +11,17 @@ class SessionsController < ApplicationController
     investor = Investor.find_by(username: params[:username])
     if investor && investor.authenticate(params[:password])
       session[:investor_id] = investor.id
-      redirect_to root_path, notice: "Signed In as #{investor.username}"
+      redirect_to root_path
+    elsif !investor
+      redirect_to log_in_path, alert: 'Invalid Username'
     else
-      redirect_to log_in_path, alert: 'Log-In Failed'
+      redirect_to log_in_path, alert: 'Incorrect Password'
     end
   end
 
   def destroy
     session[:investor_id] = nil
-    redirect_to log_in_path, notice: "Logged-Out"
+    redirect_to log_in_path
   end
 
 end

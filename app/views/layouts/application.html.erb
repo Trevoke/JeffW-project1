@@ -12,6 +12,14 @@
         <div class="sixteen columns head">
             Portfolio Inspector
         </div>
+        <div class="sixteen columns">
+            <span>
+                <%= flash.now[:alert] %>
+            </span>
+            <span>
+              <%= flash.now[:notice] %>
+            </span>
+        </div>
     </div>
     <%= yield %>
 </body>

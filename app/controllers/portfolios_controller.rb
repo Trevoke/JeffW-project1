@@ -4,6 +4,7 @@ class PortfoliosController < ApplicationController
 
 
   def index
+    @username = current_investor.username
   end
 
   def new

@@ -1,9 +1,7 @@
 
 <div class="container">
     <div class="sixteen columns">
-        <form action="<%= investors_new_path %>" class="new_user_form">
-        <button type="submit" class="sign_up_button">Sign Up</button>
-        </form>
+        <%= button_to "Sign Up", investors_new_path, method: :get, class: "sign_up_button" %>
         <span class="new_user">New User?&nbsp&nbsp</span>
     </div>
 
