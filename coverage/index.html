@@ -14,27 +14,27 @@
       <img src="./assets/0.8.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2014-05-20T16:17:40-04:00">2014-05-20T16:17:40-04:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2014-05-21T12:56:17-04:00">2014-05-21T12:56:17-04:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">72.15%</span></span>
+    (<span class="covered_percent"><span class="red">65.9%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         6.03
+         5.48
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>9</b> files in total.
-    <b>237</b> relevant lines. 
-    <span class="green"><b>171</b> lines covered</span> and
-    <span class="red"><b>66</b> lines missed </span>
+    <b>261</b> relevant lines. 
+    <span class="green"><b>172</b> lines covered</span> and
+    <span class="red"><b>89</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -52,18 +52,18 @@
       
       <tr>
         <td class="strong"><a href="#1b31288e1259f5b60cca5e23092b1df7c0af5e57" class="src_link" title="app/models/day.rb">app/models/day.rb</a></td>
-        <td class="red strong">40.74 %</td>
-        <td>44</td>
-        <td>27</td>
-        <td>11</td>
-        <td>16</td>
-        <td>1.3</td>
+        <td class="red strong">23.53 %</td>
+        <td>85</td>
+        <td>51</td>
+        <td>12</td>
+        <td>39</td>
+        <td>0.7</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#bd66bff5c5b51da9e71bd98bbe5bd0134e00ae9b" class="src_link" title="app/models/investor.rb">app/models/investor.rb</a></td>
         <td class="red strong">70.0 %</td>
-        <td>19</td>
+        <td>18</td>
         <td>10</td>
         <td>7</td>
         <td>3</td>
@@ -159,11 +159,11 @@
         <div class="source_table" id="1b31288e1259f5b60cca5e23092b1df7c0af5e57">
   <div class="header">
     <h3>app/models/day.rb</h3>
-    <h4><span class="red">40.74 %</span> covered</h4>
+    <h4><span class="red">23.53 %</span> covered</h4>
     <div>
-      <b>27</b> relevant lines. 
-      <span class="green"><b>11</b> lines covered</span> and
-      <span class="red"><b>16</b> lines missed.</span>
+      <b>51</b> relevant lines. 
+      <span class="green"><b>12</b> lines covered</span> and
+      <span class="red"><b>39</b> lines missed.</span>
     </div>
   </div>
   
@@ -428,7 +428,253 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="44">
+        <li class="covered" data-hits="1" data-linenumber="44">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def self.split_hash(px_hash)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="45">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="46">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="47">
+          
+          
+          <code class="ruby">    h_size = px_hash.size</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="48">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="49">
+          
+          
+          <code class="ruby">    s1 = (h_size / 4).round(0)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="50">
+          
+          
+          <code class="ruby">    s2 = s1 * 2</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="51">
+          
+          
+          <code class="ruby">    s3 = s1 * 3</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="52">
+          
+          
+          <code class="ruby">    s4 = h_size</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="53">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="54">
+          
+          
+          <code class="ruby">    d1 = px_hash[s1-1][0]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="55">
+          
+          
+          <code class="ruby">    d2 = px_hash[s2-1][0]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="56">
+          
+          
+          <code class="ruby">    d3 = px_hash[s3-1][0]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="57">
+          
+          
+          <code class="ruby">    d4 = px_hash[s4-1][0]</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="58">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="59">
+          
+          
+          <code class="ruby">    price_array = []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="60">
+          
+          
+          <code class="ruby">    price_array[0] = {}</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="61">
+          
+          
+          <code class="ruby">    price_array[1] = {}</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="62">
+          
+          
+          <code class="ruby">    price_array[2] = {}</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="63">
+          
+          
+          <code class="ruby">    price_array[3] = {}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="64">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="65">
+          
+          
+          <code class="ruby">    price_array[0] = px_hash.select do |k,v|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="66">
+          
+          
+          <code class="ruby">      k&lt;= d1</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="67">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="68">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="69">
+          
+          
+          <code class="ruby">    price_array[1] = px_hash.select do |k,v|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="70">
+          
+          
+          <code class="ruby">      k &gt; d1 &amp;&amp; k&lt;= d2</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="71">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="72">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="73">
+          
+          
+          <code class="ruby">    price_array[2] = px_hash.select do |k,v|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="74">
+          
+          
+          <code class="ruby">      k &gt; d2 &amp;&amp; k&lt;= d3</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="75">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="76">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="77">
+          
+          
+          <code class="ruby">    price_array[3] = px_hash.select do |k,v|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="78">
+          
+          
+          <code class="ruby">      k &gt; d3 &amp;&amp; k&lt;= d4</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="79">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="80">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="81">
+          
+          
+          <code class="ruby">    return price_array</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="82">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="83">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="84">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="85">
           
           
           <code class="ruby">end</code>
@@ -521,31 +767,31 @@
         <li class="never" data-hits="" data-linenumber="12">
           
           
-          <code class="ruby">        #redirect_to root_path</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="13">
-          
-          
           <code class="ruby">     else</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="14">
+        <li class="missed" data-hits="0" data-linenumber="13">
           
           
           <code class="ruby">        return true</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="15">
+        <li class="never" data-hits="" data-linenumber="14">
           
           
           <code class="ruby">     end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="16">
+        <li class="never" data-hits="" data-linenumber="15">
           
           
           <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="16">
+          
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="17">
@@ -555,12 +801,6 @@
         </li>
       
         <li class="never" data-hits="" data-linenumber="18">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="19">
           
           
           <code class="ruby">end</code>
@@ -1256,14 +1496,14 @@
           <code class="ruby">    data.each do |day|</code>
         </li>
       
-        <li class="covered" data-hits="597" data-linenumber="34">
-          <span class="hits">597</span>
+        <li class="covered" data-hits="598" data-linenumber="34">
+          <span class="hits">598</span>
           
           <code class="ruby">      curr_day = Day.create(trade_date: day.trade_date, symbol: day.symbol, close: day.close)</code>
         </li>
       
-        <li class="covered" data-hits="597" data-linenumber="35">
-          <span class="hits">597</span>
+        <li class="covered" data-hits="598" data-linenumber="35">
+          <span class="hits">598</span>
           
           <code class="ruby">      curr_stock.days &lt;&lt; curr_day</code>
         </li>
@@ -1421,7 +1661,7 @@
         <li class="missed" data-hits="0" data-linenumber="61">
           
           
-          <code class="ruby">    data = pv.range(1, num_prices, 1).map {|x|</code>
+          <code class="ruby">    data = pv.range(1, num_prices+1, 1).map {|x|</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="62">
@@ -1451,13 +1691,13 @@
         <li class="missed" data-hits="0" data-linenumber="66">
           
           
-          <code class="ruby">    w = 800</code>
+          <code class="ruby">    w = 600</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="67">
           
           
-          <code class="ruby">    h = 400</code>
+          <code class="ruby">    h = 300</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="68">

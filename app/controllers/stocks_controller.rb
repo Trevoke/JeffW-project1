@@ -6,10 +6,6 @@ class StocksController < ApplicationController
     @stock = Stock.new
   end
 
-  def exists
-    @portfolio_id = params.fetch(:portfolio_id)
-  end
-
   def create
     stock_name = stock_params["name"]
     @portfolio_id = params[:portfolio_id]
@@ -25,11 +21,9 @@ class StocksController < ApplicationController
     portfolio = Portfolio.find(params.fetch(:portfolio_id))
     curr_share = portfolio.shares.create(num_shares: params.fetch(:num_shares), stock_id: stock.id)
     if curr_share.id == nil
-      #not sure next line is needed.  also perhaps use notice/alert here instead
-      @portfolio_id =  portfolio.id
-      redirect_to "/portfolios/#{@portfolio_id}/stocks/exists"
+      redirect_to portfolio_path(portfolio.id), alert: 'Stock already in your portfolio.  Please use Edit to change number of shares.'
     else
-      redirect_to "/portfolios/#{portfolio.id}"
+      redirect_to portfolio_path(portfolio.id)
     end
   end
 
@@ -47,8 +41,8 @@ class StocksController < ApplicationController
         k >= params.fetch(:chart_begin_date) && k<= params.fetch(:chart_end_date)
       end
       @px_arrays = Day.split_hash(@prices_for_range)
-      @sorted_price_array = Hash[@prices_for_range.sort].values
-      @x = Stock.m2(@sorted_price_array)
+      sorted_price_array = Hash[@prices_for_range.sort].values
+      @graph_svg = Stock.graph_it(sorted_price_array)
     end
   end
 
@@ -64,7 +58,8 @@ class StocksController < ApplicationController
     share = Share.find(params.fetch(:share_id))
     share.num_shares = params.fetch(:num_shares)
     share.save
-    redirect_to "/portfolios/#{params.fetch(:portfolio_id)}"
+    #redirect_to "/portfolios/#{params.fetch(:portfolio_id)}"
+    redirect_to portfolio_path(params.fetch(:portfolio_id))
   end
 
   def destroy
@@ -72,7 +67,8 @@ class StocksController < ApplicationController
     portfolio_id = params[:portfolio_id]
     share = Share.where(portfolio_id: portfolio_id, stock_id: stock_id).take
     Share.delete(share.id)
-    redirect_to "/portfolios/#{portfolio_id}"
+    #redirect_to "/portfolios/#{portfolio_id}"
+    redirect_to portfolio_path(portfolio_id)
   end
 
 

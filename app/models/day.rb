@@ -42,44 +42,33 @@ class Day < ActiveRecord::Base
   end
 
   def self.split_hash(px_hash)
-
-
-    h_size = px_hash.size
-
-    s1 = (h_size / 4).round(0)
-    s2 = s1 * 2
-    s3 = s1 * 3
-    s4 = h_size
-
-    d1 = px_hash[s1-1][0]
-    d2 = px_hash[s2-1][0]
-    d3 = px_hash[s3-1][0]
-    d4 = px_hash[s4-1][0]
-
+    day_count = px_hash.size
+    row_count = (day_count/4).to_i
+    remainder = day_count % 4
+    previous = 0
+    rows_per_col = []
+    for index in 0..3
+      add_on = 0
+      if remainder > 0
+        add_on = 1
+      end
+      rows_per_col[index] = previous + row_count+add_on
+      remainder -= 1
+      previous = rows_per_col[index]
+    end
+    begin_date = "2011-12-31"
+    end_date = px_hash[rows_per_col[0]-1][0]
     price_array = []
-    price_array[0] = {}
-    price_array[1] = {}
-    price_array[2] = {}
-    price_array[3] = {}
-
-    price_array[0] = px_hash.select do |k,v|
-      k<= d1
+    for index in 0..3
+      price_array[index] = px_hash.select do |k,v|
+        k >= begin_date && k<= end_date
+      end
+      if index < 3
+        begin_date = px_hash[rows_per_col[index]][0]
+        end_date = px_hash[rows_per_col[index+1]-1][0]
+      end
     end
-
-    price_array[1] = px_hash.select do |k,v|
-      k > d1 && k<= d2
-    end
-
-    price_array[2] = px_hash.select do |k,v|
-      k > d2 && k<= d3
-    end
-
-    price_array[3] = px_hash.select do |k,v|
-      k > d3 && k<= d4
-    end
-
     return price_array
-
   end
 
 end

@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   get '/investors/new' => 'investors#new'
   post '/investors' => 'investors#create'
 
-  get '/portfolios/:portfolio_id/stocks/exists' => 'stocks#exists'
   get '/portfolios/analyze/:id' => 'portfolios#analyze', as: 'analyze'
   get '/stocks/:sym' => 'stocks#display', as: 'graph'
   resources :portfolios do
@@ -16,16 +15,5 @@ Rails.application.routes.draw do
   get '/sessions/new' => 'sessions#new', as: 'log_in'
   post '/sessions' => 'sessions#create'
   delete '/sessions' => 'sessions#destroy', as: 'log_out'
-
-
-
-  # get '/portfolios' => 'portfolios#index'
-  # get '/portfolios/new' => 'portfolios#new'
-  # post '/portfolios' => 'portfolios#create'
-  # get '/portfolios/:id' => 'portfolios#show'
-
-  # get '/portfolios/:portfolio_id/stocks/new' => 'stocks#new'
-
-  # post '/portfolios/:portfolio_id/stocks' => 'stocks#list'
 
 end

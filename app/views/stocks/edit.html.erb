@@ -3,20 +3,14 @@
     <div class="row"></div>
 <% end %>
 
-
-
 <div class="container">
     <div class="sixteen columns login">
-        <form action="/portfolios/<%=@share.portfolio_id%>/stocks/<%=@share.stock_id%>" method="post">
+        <form action="<%= portfolio_stock_path(@share.portfolio_id, @share.stock_id)%>" method="post">
             <%= token_tag %>
             <input type="hidden" name="_method" value="put">
             <input type="hidden" name="share_id" value="<%=@share.id%>">
             <input type="text" name="num_shares" value="<%=@share.num_shares%>" class="gen_marg">
             <input type="submit">
         </form>
-
-
     </div>
-
-
 </div>
