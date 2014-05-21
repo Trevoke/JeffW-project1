@@ -19,7 +19,13 @@
           </tr>
           <% @final.each do |stock| %>
           <tr>
-              <td class="port_cell left_cell"><a href="/stocks/<%=stock["ticker"]%>"><%= stock["ticker"] %></a></td>
+              <td class="port_cell left_cell">
+                  <form action="/stocks/<%=stock["ticker"]%>" method="get">
+                      <input type="hidden" name="chart_begin_date" value="2012-01-03">
+                      <input type="hidden" name="chart_end_date" value="<%=Time.now.to_date.to_s%>">
+                      <button type="submit" class="to_chart"><%=stock["ticker"]%></button>
+                  </form>
+              </td>
               <td class="port_cell left_cell"><%= stock["name"] %></td>
               <td class="port_cell left_cell"><%= number_with_precision(stock["num_shares"], precision: 0, delimiter: ',') %></td>
               <td class="port_cell left_cell">$<%= number_with_precision(stock["begin_price"], precision: 2, delimiter: ',') %></td>

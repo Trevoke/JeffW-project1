@@ -41,4 +41,45 @@ class Day < ActiveRecord::Base
     return end_date
   end
 
+  def self.split_hash(px_hash)
+
+
+    h_size = px_hash.size
+
+    s1 = (h_size / 4).round(0)
+    s2 = s1 * 2
+    s3 = s1 * 3
+    s4 = h_size
+
+    d1 = px_hash[s1-1][0]
+    d2 = px_hash[s2-1][0]
+    d3 = px_hash[s3-1][0]
+    d4 = px_hash[s4-1][0]
+
+    price_array = []
+    price_array[0] = {}
+    price_array[1] = {}
+    price_array[2] = {}
+    price_array[3] = {}
+
+    price_array[0] = px_hash.select do |k,v|
+      k<= d1
+    end
+
+    price_array[1] = px_hash.select do |k,v|
+      k > d1 && k<= d2
+    end
+
+    price_array[2] = px_hash.select do |k,v|
+      k > d2 && k<= d3
+    end
+
+    price_array[3] = px_hash.select do |k,v|
+      k > d3 && k<= d4
+    end
+
+    return price_array
+
+  end
+
 end

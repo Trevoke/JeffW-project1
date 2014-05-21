@@ -34,12 +34,17 @@ class StocksController < ApplicationController
   end
 
   def display
-    @p = params
+    @symbol = params.fetch(:sym)
+    @b_date = params.fetch(:chart_begin_date)
+    @e_date = params.fetch(:chart_end_date)
     price_hash = Day.get_prices(params[:sym]).sort
+
 
     @prices_for_range = price_hash.select do |k,v|
       k >= params.fetch(:chart_begin_date) && k<= params.fetch(:chart_end_date)
     end
+
+    @px_arrays = Day.split_hash(@prices_for_range)
 
     @sorted_price_array = Hash[@prices_for_range.sort].values
 

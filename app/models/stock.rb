@@ -58,7 +58,7 @@ class Stock < ActiveRecord::Base
 
   def self.m2(prices)
     num_prices = prices.count
-    data = pv.range(1, num_prices, 1).map {|x|
+    data = pv.range(1, num_prices+1, 1).map {|x|
     OpenStruct.new({:x=> x, :y=> prices[x-1]})
     }
 

@@ -115,3 +115,8 @@ input[type="submit"].log_button {
   background-color: white;
   border: none;
 }
+
+.chart_cell {
+  width: 90px;
+  border: 1px dotted black;
+}
