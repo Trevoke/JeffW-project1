@@ -80,9 +80,11 @@ input[type="text"].gen_marg, input[type="password"].gen_marg {
   font-size: 16px;
 }
 
+
 form {
   display: inline;
 }
+
 
 .sign_up_button {
   width: 76px;
@@ -91,6 +93,12 @@ form {
   padding: 0;
   float: right;
 }
+
+input[type="submit"].sign_up_button {
+  padding: 0;
+}
+
+
 
 .new_user {
   font-size: 12px;
