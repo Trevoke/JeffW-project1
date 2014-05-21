@@ -37,8 +37,8 @@ class StocksController < ApplicationController
     @portfolio = Portfolio.find(params.fetch(:portfolio_id))
     authorize(@portfolio.investor_id)
     @symbol = params.fetch(:sym)
-    @b_date = params.fetch(:chart_begin_date)
-    @e_date = params.fetch(:chart_end_date)
+    @b_date = Day.verify_begin_date(params.fetch(:chart_begin_date), @symbol)
+    @e_date = Day.verify_end_date(params.fetch(:chart_end_date), @symbol)
     price_hash = Day.get_prices(params[:sym]).sort
 
 
