@@ -20,9 +20,9 @@
           <% @final.each do |stock| %>
           <tr>
               <td class="port_cell left_cell">
-                  <form action="/stocks/<%=stock["ticker"]%>" method="get">
-                      <input type="hidden" name="chart_begin_date" value="2012-01-03">
-                      <input type="hidden" name="chart_end_date" value="<%=Time.now.to_date.to_s%>">
+                  <form action="<%=graph_path(stock["ticker"])%>" method="get">
+                      <input type="hidden" name="chart_begin_date" value="<%=@begin_date%>">
+                      <input type="hidden" name="chart_end_date" value="<%=@end_date%>">
                       <input type="hidden" name="portfolio_id" value="<%=@portfolio.id%>">
                       <button type="submit" class="to_chart"><%=stock["ticker"]%></button>
                   </form>
@@ -66,4 +66,12 @@
           <%=number_to_percentage(@portfolio_aggregate["perc_chg"], precision: 2)%>
       </div>
   </div>
+  <% 2.times do%>
+      <div class="row"></div>
+  <% end %>
+  <div class="sixteen columns">
+      <%= button_to "Back to Portfolio", portfolio_path(@portfolio.id), method: "get", class: "gen_button" %>
+  </div>
 </div>
+
+

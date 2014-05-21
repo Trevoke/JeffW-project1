@@ -9,7 +9,6 @@ class Investor < ActiveRecord::Base
   def self.authorize(investor_id)
      if investor_id != current_investor.id
         return false
-        #redirect_to root_path
      else
         return true
      end

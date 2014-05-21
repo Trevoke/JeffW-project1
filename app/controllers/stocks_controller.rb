@@ -39,19 +39,17 @@ class StocksController < ApplicationController
     @symbol = params.fetch(:sym)
     @b_date = Day.verify_begin_date(params.fetch(:chart_begin_date), @symbol)
     @e_date = Day.verify_end_date(params.fetch(:chart_end_date), @symbol)
-    price_hash = Day.get_prices(params[:sym]).sort
-
-
-    @prices_for_range = price_hash.select do |k,v|
-      k >= params.fetch(:chart_begin_date) && k<= params.fetch(:chart_end_date)
+    if @b_date > @e_date
+      redirect_to portfolio_path(@portfolio.id), alert: 'End Date should be after Begin Date'
+    else
+      price_hash = Day.get_prices(params[:sym]).sort
+      @prices_for_range = price_hash.select do |k,v|
+        k >= params.fetch(:chart_begin_date) && k<= params.fetch(:chart_end_date)
+      end
+      @px_arrays = Day.split_hash(@prices_for_range)
+      @sorted_price_array = Hash[@prices_for_range.sort].values
+      @x = Stock.m2(@sorted_price_array)
     end
-
-    @px_arrays = Day.split_hash(@prices_for_range)
-
-    @sorted_price_array = Hash[@prices_for_range.sort].values
-
-    #@url = Gchart.line(:data => @sorted_price_array)
-    @x = Stock.m2(@sorted_price_array)
   end
 
   def edit

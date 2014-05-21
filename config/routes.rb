@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   post '/investors' => 'investors#create'
 
   get '/portfolios/:portfolio_id/stocks/exists' => 'stocks#exists'
-  get '/portfolios/analyze/:id' => 'portfolios#analyze'
-  get '/stocks/:sym' => 'stocks#display'
+  get '/portfolios/analyze/:id' => 'portfolios#analyze', as: 'analyze'
+  get '/stocks/:sym' => 'stocks#display', as: 'graph'
   resources :portfolios do
     resources :stocks, except: [:index]
   end
