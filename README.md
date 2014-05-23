@@ -16,3 +16,7 @@ Yahoo Finance API:
 Will use this to help user find a particular ticker when a company name is given.
 http://autoc.finance.yahoo.com/autoc?query=#{company}&callback=YAHOO.Finance.SymbolSuggest.ssCallback
 
+Ruby gem for graphing: rubyvis
+
+
+
