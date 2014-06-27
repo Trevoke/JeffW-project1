@@ -1,27 +1,26 @@
-
 <% 3.times do%>
-    <div class="row"></div>
+<div class="row"></div>
 <% end %>
 
 <div class="container">
-    <div class="sixteen columns login">
-        <% if @investor.errors.any? %>
-            <p class="error-count">
-                The form has <%= pluralize(@investor.errors.count, "error") %>.
-            </p>
-            <ul class= "error-list">
-                <% @investor.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
-                <% end %>
-            </ul>
+  <div class="sixteen columns login">
+    <% if @investor.errors.any? %>
+      <p class="error-count">
+        The form has <%= pluralize(@investor.errors.count, "error") %>.
+      </p>
+      <ul class= "error-list">
+        <% @investor.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
         <% end %>
-    </div>
-    <div class="sixteen columns login">
-        <%= form_for @investor do |f| %>
-          <%= f.text_field :username, placeholder: 'User Name', class: "gen_marg" %>
-          <%= f.password_field :password, placeholder: 'Password', class: "gen_marg" %>
-          <%= f.password_field :password_confirmation, placeholder: 'Password Confirmation', class: "gen_marg" %>
-          <%= f.submit %>
-        <% end %>
-    </div>
+      </ul>
+    <% end %>
+  </div>
+  <div class="sixteen columns login">
+    <%= form_for @investor do |f| %>
+      <%= f.text_field :username, placeholder: 'User Name', class: "gen_marg" %>
+      <%= f.password_field :password, placeholder: 'Password', class: "gen_marg" %>
+      <%= f.password_field :password_confirmation, placeholder: 'Password Confirmation', class: "gen_marg" %>
+      <%= f.submit %>
+    <% end %>
+  </div>
 </div>

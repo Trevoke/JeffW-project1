@@ -1,77 +1,75 @@
 <%= render 'logout'%>
 
 <% 2.times do%>
-    <div class="row"></div>
+<div class="row"></div>
 <% end %>
 
 <div class="container">
   <div class="sixteen columns">
-      <table>
-          <tr>
-              <th>Ticker</th>
-              <th>Company</th>
-              <th>Position</th>
-              <th>Px: <%=@begin_date%></th>
-              <th>Px: <%=@end_date%></th>
-              <th>Start Value</th>
-              <th>End Value</th>
-              <th>Perc. Chg</th>
-          </tr>
-          <% @final.each do |stock| %>
-          <tr>
-              <td class="port_cell left_cell">
-                  <form action="<%=graph_path(stock["ticker"])%>" method="get">
-                      <input type="hidden" name="chart_begin_date" value="<%=@begin_date%>">
-                      <input type="hidden" name="chart_end_date" value="<%=@end_date%>">
-                      <input type="hidden" name="portfolio_id" value="<%=@portfolio.id%>">
-                      <button type="submit" class="to_chart"><%=stock["ticker"]%></button>
-                  </form>
-              </td>
-              <td class="port_cell left_cell"><%= stock["name"] %></td>
-              <td class="port_cell left_cell"><%= number_with_precision(stock["num_shares"], precision: 0, delimiter: ',') %></td>
-              <td class="port_cell left_cell">$<%= number_with_precision(stock["begin_price"], precision: 2, delimiter: ',') %></td>
-              <td class="port_cell left_cell">$<%= number_with_precision(stock["end_price"], precision: 2, delimiter: ',') %></td>
-              <td class="port_cell left_cell">$<%= number_with_precision(stock["begin_value"], precision: 2, delimiter: ',') %></td>
-              <td class="port_cell left_cell">$<%= number_with_precision(stock["end_value"], precision: 2, delimiter: ',') %></td>
-              <td class="port_cell"><%= number_to_percentage(stock["perc_change"], precision: 2) %></td>
-          </tr>
-          <% end %>
-      </table>
+    <table>
+      <tr>
+        <th>Ticker</th>
+        <th>Company</th>
+        <th>Position</th>
+        <th>Px: <%=@begin_date%></th>
+        <th>Px: <%=@end_date%></th>
+        <th>Start Value</th>
+        <th>End Value</th>
+        <th>Perc. Chg</th>
+      </tr>
+      <% @final.each do |stock| %>
+        <tr>
+          <td class="port_cell left_cell">
+            <form action="<%=graph_path(stock["ticker"])%>" method="get">
+              <input type="hidden" name="chart_begin_date" value="<%=@begin_date%>">
+              <input type="hidden" name="chart_end_date" value="<%=@end_date%>">
+              <input type="hidden" name="portfolio_id" value="<%=@portfolio.id%>">
+              <button type="submit" class="to_chart"><%=stock["ticker"]%></button>
+            </form>
+          </td>
+          <td class="port_cell left_cell"><%= stock["name"] %></td>
+          <td class="port_cell left_cell"><%= number_with_precision(stock["num_shares"], precision: 0, delimiter: ',') %></td>
+          <td class="port_cell left_cell">$<%= number_with_precision(stock["begin_price"], precision: 2, delimiter: ',') %></td>
+          <td class="port_cell left_cell">$<%= number_with_precision(stock["end_price"], precision: 2, delimiter: ',') %></td>
+          <td class="port_cell left_cell">$<%= number_with_precision(stock["begin_value"], precision: 2, delimiter: ',') %></td>
+          <td class="port_cell left_cell">$<%= number_with_precision(stock["end_value"], precision: 2, delimiter: ',') %></td>
+          <td class="port_cell"><%= number_to_percentage(stock["perc_change"], precision: 2) %></td>
+        </tr>
+      <% end %>
+    </table>
   </div>
   <% 3.times do%>
-      <div class="row"></div>
+  <div class="row"></div>
   <% end %>
 
   <div class="twelve columns offset-by-two">
-      <div class="five columns num_label">
-          Total Beginning Value:
-      </div>
-      <div class="two columns number">
-          $<%=number_with_precision(@portfolio_aggregate["start_val"], precision: 2, delimiter: ',')%>
-      </div>
+    <div class="five columns num_label">
+      Total Beginning Value:
+    </div>
+    <div class="two columns number">
+      $<%=number_with_precision(@portfolio_aggregate["start_val"], precision: 2, delimiter: ',')%>
+    </div>
   </div>
   <div class="twelve columns offset-by-two">
-      <div class="five columns num_label">
-          Total Ending Value:
-      </div>
-      <div class="two columns number">
-          $<%=number_with_precision(@portfolio_aggregate["end_val"], precision: 2, delimiter: ',')%>
-      </div>
+    <div class="five columns num_label">
+      Total Ending Value:
+    </div>
+    <div class="two columns number">
+      $<%=number_with_precision(@portfolio_aggregate["end_val"], precision: 2, delimiter: ',')%>
+    </div>
   </div>
   <div class="twelve columns offset-by-two">
-      <div class="five columns num_label">
-          Percent Change:
-      </div>
-      <div class="two columns number">
-          <%=number_to_percentage(@portfolio_aggregate["perc_chg"], precision: 2)%>
-      </div>
+    <div class="five columns num_label">
+      Percent Change:
+    </div>
+    <div class="two columns number">
+      <%=number_to_percentage(@portfolio_aggregate["perc_chg"], precision: 2)%>
+    </div>
   </div>
   <% 2.times do%>
-      <div class="row"></div>
+  <div class="row"></div>
   <% end %>
   <div class="sixteen columns">
-      <%= button_to "Back to Portfolio", portfolio_path(@portfolio.id), method: "get", class: "gen_button" %>
+    <%= button_to "Back to Portfolio", portfolio_path(@portfolio.id), method: "get", class: "gen_button" %>
   </div>
 </div>
-
-

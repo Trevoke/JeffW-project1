@@ -1,24 +1,17 @@
 <%= render 'logout'%>
 
 <% 3.times do%>
-    <div class="row"></div>
+<div class="row"></div>
 <% end %>
 
 <div class="container">
-    <%= form_for [@portfolio, @stock] do |f| %>
+  <%= form_for [@portfolio, @stock] do |f| %>
     <div class="three columns">
-        <%= f.submit(class: "gen_button") %>
+      <%= f.submit(class: "gen_button") %>
     </div>
     <div class="ten columns offset-by-two">
-        <%= f.label :name %>
-        <%= f.text_field :name%>
+      <%= f.label :name %>
+      <%= f.text_field :name%>
     </div>
-    <% end %>
+  <% end %>
 </div>
-
-
-
-
-
-
-

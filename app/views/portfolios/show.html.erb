@@ -1,64 +1,62 @@
-
 <%= render 'logout'%>
 
 <% 2.times do%>
-    <div class="row"></div>
+<div class="row"></div>
 <% end %>
 
 <div class="container">
-    <div class="three columns">
-        <%= button_to "Add Stock", new_portfolio_stock_path(@portfolio.id), method: "get", class: "gen_button" %>
-        <%= button_to "All portfolios", portfolios_path, method: "get", class: "gen_button" %>
-        <%= button_to "Edit Portfolio Name", edit_portfolio_path(@portfolio.id), method: "get", class: "gen_button" %>
-        <%= button_to "Delete Portfolio", portfolio_path(@portfolio.id), method: "delete", class: "gen_button" %>
-    </div>
+  <div class="three columns">
+    <%= button_to "Add Stock", new_portfolio_stock_path(@portfolio.id), method: "get", class: "gen_button" %>
+    <%= button_to "All portfolios", portfolios_path, method: "get", class: "gen_button" %>
+    <%= button_to "Edit Portfolio Name", edit_portfolio_path(@portfolio.id), method: "get", class: "gen_button" %>
+    <%= button_to "Delete Portfolio", portfolio_path(@portfolio.id), method: "delete", class: "gen_button" %>
+  </div>
 
-    <div class="ten columns offset-by-one">
-        <form action="<%= analyze_path(@portfolio.id)%>" method="get">
-            <input type="date" min="2012-01-03" name="begin_date" value="2012-01-03">
-            <input type="date" min="2012-01-01" name="end_date" value="<%=Time.now.to_date.to_s%>">
-            <button type="submit"><i class="fa fa-arrow-right"></i></button>
-        </form>
-    </div>
-        <div class="ten columns offset-by-one">
-        <table>
-            <tr>
-                <th colspan="4" class="port_title"><%=@portfolio.name%> Portfolio</th>
-            </tr>
-            <tr>
-                <th class="port_cell">Ticker</th>
-                <th class="port_cell">Company</th>
-                <th class="port_cell">Position</th>
-            </tr>
-            <% @details.each do |stock| %>
-                <tr>
-                    <td class="port_cell left_cell">
-                        <form action="<%= graph_path(stock["ticker"])%>" method="get">
-                            <input type="hidden" name="chart_begin_date" value="2012-01-03">
-                            <input type="hidden" name="chart_end_date" value="<%=Time.now.to_date.to_s%>">
-                            <input type="hidden" name="portfolio_id" value="<%=@portfolio.id%>">
-                            <button type="submit" class="to_chart"><%=stock["ticker"]%></button>
-                        </form>
-                    </td>
-                    <td class="port_cell left_cell"><%= stock["name"] %></td>
-                    <td class="port_cell left_cell"><%= stock["num_shares"]%></td>
-                    <td class="port_cell">
-                        <form class="port_show" action="<%=portfolio_stock_path(@portfolio.id, stock["id"])%>" method="post">
-                        <%= token_tag %>
-                        <input type="hidden" name="_method" value="delete">
-                        <button type="submit"><i class="fa fa-trash-o"></i></button>
-                        </form>
-                        <form class="port_show" action="<%=edit_portfolio_stock_path(@portfolio.id, stock["id"])%>" method="get">
-                        <button type="submit"><i class="fa fa-pencil-square-o"></i></button>
-                        </form>
-                    </td>
-                </tr>
-            <% end %>
-        </table>
-    </div>
+  <div class="ten columns offset-by-one">
+    <form action="<%= analyze_path(@portfolio.id)%>" method="get">
+      <input type="date" min="2012-01-03" name="begin_date" value="2012-01-03">
+      <input type="date" min="2012-01-01" name="end_date" value="<%=Time.now.to_date.to_s%>">
+      <button type="submit"><i class="fa fa-arrow-right"></i></button>
+    </form>
+  </div>
+  <div class="ten columns offset-by-one">
+    <table>
+      <tr>
+        <th colspan="4" class="port_title"><%=@portfolio.name%> Portfolio</th>
+      </tr>
+      <tr>
+        <th class="port_cell">Ticker</th>
+        <th class="port_cell">Company</th>
+        <th class="port_cell">Position</th>
+      </tr>
+      <% @details.each do |stock| %>
+        <tr>
+          <td class="port_cell left_cell">
+            <form action="<%= graph_path(stock["ticker"])%>" method="get">
+              <input type="hidden" name="chart_begin_date" value="2012-01-03">
+              <input type="hidden" name="chart_end_date" value="<%=Time.now.to_date.to_s%>">
+              <input type="hidden" name="portfolio_id" value="<%=@portfolio.id%>">
+              <button type="submit" class="to_chart"><%=stock["ticker"]%></button>
+            </form>
+          </td>
+          <td class="port_cell left_cell"><%= stock["name"] %></td>
+          <td class="port_cell left_cell"><%= stock["num_shares"]%></td>
+          <td class="port_cell">
+            <form class="port_show" action="<%=portfolio_stock_path(@portfolio.id, stock["id"])%>" method="post">
+              <%= token_tag %>
+              <input type="hidden" name="_method" value="delete">
+              <button type="submit"><i class="fa fa-trash-o"></i></button>
+            </form>
+            <form class="port_show" action="<%=edit_portfolio_stock_path(@portfolio.id, stock["id"])%>" method="get">
+              <button type="submit"><i class="fa fa-pencil-square-o"></i></button>
+            </form>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 
-    <div class="sixteen columns">
+  <div class="sixteen columns">
 
-    </div>
+  </div>
 </div>
-

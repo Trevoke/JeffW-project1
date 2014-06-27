@@ -1,35 +1,29 @@
-
 <%= render 'logout'%>
 
 <% 3.times do%>
-    <div class="row"></div>
+<div class="row"></div>
 <% end %>
 
 <div class="container">
-    <div class="three columns">
-        <%= button_to "Create New", new_portfolio_path, method: :get, class: "gen_button" %>
-    </div>
-    <div class="ten columns offset-by-two">
-        <table>
-            <tr class="port_header">
-                <th class="port_h_cell">Portfolio Name</th>
-                <th class="port_h_cell">Date Created</th>
-            </tr>
-        <% current_investor.portfolios.each do |portfolio| %>
-            <tr class="port_list">
-                <td class="port_cell left_cell">
-                    <a class="port_link" href="<%=portfolio_path(portfolio.id)%>"><%= portfolio.name %></a>
-                </td>
-                <td class="port_cell">
-                    <%= portfolio.created_at.to_date %>
-                </td>
-            </tr>
-        <% end %>
+  <div class="three columns">
+    <%= button_to "Create New", new_portfolio_path, method: :get, class: "gen_button" %>
+  </div>
+  <div class="ten columns offset-by-two">
+    <table>
+      <tr class="port_header">
+        <th class="port_h_cell">Portfolio Name</th>
+        <th class="port_h_cell">Date Created</th>
+      </tr>
+      <% current_investor.portfolios.each do |portfolio| %>
+        <tr class="port_list">
+          <td class="port_cell left_cell">
+            <a class="port_link" href="<%=portfolio_path(portfolio.id)%>"><%= portfolio.name %></a>
+          </td>
+          <td class="port_cell">
+            <%= portfolio.created_at.to_date %>
+          </td>
+        </tr>
+      <% end %>
     </table>
-    </div>
+  </div>
 </div>
-
-
-
-
-

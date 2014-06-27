@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>PortfolioApp</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>PortfolioApp</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
 
     <div class="container">
-        <div class="sixteen columns head">
-            Portfolio Inspector
-        </div>
-        <div class="sixteen columns">
-            <span>
-                <%= flash.now[:alert] %>
-            </span>
-            <span>
-              <%= flash.now[:notice] %>
-            </span>
-        </div>
+      <div class="sixteen columns head">
+        Portfolio Inspector
+      </div>
+      <div class="sixteen columns">
+        <span>
+          <%= flash.now[:alert] %>
+        </span>
+        <span>
+          <%= flash.now[:notice] %>
+        </span>
+      </div>
     </div>
     <%= yield %>
-</body>
+  </body>
 </html>

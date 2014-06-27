@@ -1,44 +1,42 @@
 <%= render 'logout'%>
 
 <div class="container">
-    <div class="sixteen columns">
-        <%= button_to "Back to Portfolio", portfolio_path(@portfolio.id), method: "get", class: "gen_button" %>
-    </div>
-    <div class="sixteen columns chart">
-        <h3><%=@symbol%></h3>
-    </div>
-    <div class="sixteen columns chart">
-        <form action="<%=graph_path(@symbol)%>" method="get">
-            <input type="date" min="2012-01-01" name="chart_begin_date" value="<%=@b_date%>">
-            <input type="date" min="2012-01-01" name="chart_end_date" value="<%=@e_date%>">
-            <input type="hidden" name="portfolio_id" value="<%=@portfolio.id%>">
-            <button type="submit"><i class="fa fa-arrow-right"></i></button>
-        </form>
-    </div>
+  <div class="sixteen columns">
+    <%= button_to "Back to Portfolio", portfolio_path(@portfolio.id), method: "get", class: "gen_button" %>
+  </div>
+  <div class="sixteen columns chart">
+    <h3><%=@symbol%></h3>
+  </div>
+  <div class="sixteen columns chart">
+    <form action="<%=graph_path(@symbol)%>" method="get">
+      <input type="date" min="2012-01-01" name="chart_begin_date" value="<%=@b_date%>">
+      <input type="date" min="2012-01-01" name="chart_end_date" value="<%=@e_date%>">
+      <input type="hidden" name="portfolio_id" value="<%=@portfolio.id%>">
+      <button type="submit"><i class="fa fa-arrow-right"></i></button>
+    </form>
+  </div>
 
-    <div class="sixteen columns chart">
-        <%= raw @graph_svg %>
-    </div>
-<% 2.times do%>
-    <div class="row"></div>
-<% end %>
+  <div class="sixteen columns chart">
+    <%= raw @graph_svg %>
+  </div>
+  <% 2.times do%>
+  <div class="row"></div>
+  <% end %>
 
-    <div class="sixteen columns">
-        <% for index in 0..3 %>
-            <div class="four columns omega">
-                <table>
-                      <% @px_arrays[index].each do |k, v| %>
-                          <tr>
-                              <td class="chart_cell"><%= k %></td>
-                              <td class="chart_cell"><%= v %></td>
-                          </tr>
-                      <% end %>
-                </table>
-            </div>
-        <% end %>
-    </div>
+  <div class="sixteen columns">
+    <% for index in 0..3 %>
+      <div class="four columns omega">
+        <table>
+          <% @px_arrays[index].each do |k, v| %>
+            <tr>
+              <td class="chart_cell"><%= k %></td>
+              <td class="chart_cell"><%= v %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    <% end %>
+  </div>
 </div>
 <br/>
 <br/>
-
-

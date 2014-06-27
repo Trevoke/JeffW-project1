@@ -1,18 +1,17 @@
-
 <div class="container">
-    <div class="sixteen columns">
-        <%= button_to "Sign Up", investors_new_path, method: :get, class: "sign_up_button" %>
-        <span class="new_user">New User?&nbsp&nbsp</span>
-    </div>
+  <div class="sixteen columns">
+    <%= button_to "Sign Up", investors_new_path, method: :get, class: "sign_up_button" %>
+    <span class="new_user">New User?&nbsp&nbsp</span>
+  </div>
 
-    <% 3.times do%>
-        <div class="row"></div>
+  <% 3.times do%>
+  <div class="row"></div>
+  <% end %>
+  <div class="sixteen columns login">
+    <%= form_tag sessions_path do %>
+      <%= text_field_tag :username, nil, placeholder: 'User Name', class: "gen_marg" %>
+      <%= password_field_tag :password, nil, placeholder: 'Password', class: "gen_marg" %>
+      <%= submit_tag 'Log in', class: "log_button"%>
     <% end %>
-    <div class="sixteen columns login">
-        <%= form_tag sessions_path do %>
-          <%= text_field_tag :username, nil, placeholder: 'User Name', class: "gen_marg" %>
-          <%= password_field_tag :password, nil, placeholder: 'Password', class: "gen_marg" %>
-          <%= submit_tag 'Log in', class: "log_button"%>
-        <% end %>
-    </div>
+  </div>
 </div>
