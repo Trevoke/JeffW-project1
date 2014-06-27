@@ -1,14 +1,4 @@
-
 class InvestorsController < ApplicationController
-
-  # def index
-  #   @investor = current_investor
-  #   if current_investor
-  #     redirect_to '/portfolios'
-  #   else
-  #     redirect_to '/sessions/new'
-  #   end
-  # end
 
   def new
     @investor = Investor.new

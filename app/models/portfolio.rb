@@ -46,6 +46,7 @@ class Portfolio < ActiveRecord::Base
     return full_portfolio_data
   end
 
+  # final what?
   def self.aggregate(final)
     start_val = 0
     end_val = 0
@@ -60,8 +61,6 @@ class Portfolio < ActiveRecord::Base
     aggregate["perc_chg"] = (end_val/start_val - 1) * 100
 
     return aggregate
-
   end
-
 
 end

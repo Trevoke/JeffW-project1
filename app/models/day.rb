@@ -2,6 +2,7 @@ class Day < ActiveRecord::Base
   belongs_to :stock
   validates_uniqueness_of :trade_date, scope: :symbol
 
+  # How about self.for_symbol ?
   def self.get_prices(symbol)
     days = Day.where(symbol: symbol).to_a
     price_hash = {}
@@ -11,6 +12,7 @@ class Day < ActiveRecord::Base
     return price_hash
   end
 
+  # This looks like a method that belongs on a range, not a day object
   def self.verify_begin_date(begin_date, ticker)
     sorted_dates = Hash[Day.get_prices(ticker).sort].keys
     if sorted_dates.include?(begin_date)
@@ -26,6 +28,7 @@ class Day < ActiveRecord::Base
     return begin_date
   end
 
+  # This looks like a method that belongs on a range, not a day object
   def self.verify_end_date(end_date, ticker)
     sorted_dates = Hash[Day.get_prices(ticker).sort].keys
     if sorted_dates.include?(end_date)
@@ -41,6 +44,11 @@ class Day < ActiveRecord::Base
     return end_date
   end
 
+  # px_hash is not a very friendly name (I'm also on a plane and can't use
+  # the web to research what px could mean)
+  # This method looks like it might be organizing data for viewing purposes
+  # and if so, then it does not belong here. Its name does not explain
+  # its purpose.
   def self.split_hash(px_hash)
     day_count = px_hash.size
     row_count = (day_count/4).to_i

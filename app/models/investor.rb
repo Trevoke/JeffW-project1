@@ -8,12 +8,11 @@ class Investor < ActiveRecord::Base
 
 
   def self.authorize(investor_id)
-     if investor_id != current_investor.id
-        return false
-     else
-        return true
-     end
+    if investor_id != current_investor.id
+      return false
+    else
+      return true
+    end
   end
-
 
 end

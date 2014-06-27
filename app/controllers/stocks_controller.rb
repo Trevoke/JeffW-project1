@@ -1,4 +1,3 @@
-
 class StocksController < ApplicationController
   def new
     @portfolio = Portfolio.find(params.fetch(:portfolio_id))
@@ -17,21 +16,19 @@ class StocksController < ApplicationController
 
   def show
     if params.fetch(:num_shares) == ""
-      redirect_to portfolio_path(params.fetch(:portfolio_id)), alert: 'Please enter a number of shares'
-    else
-      stock = Stock.create(ticker: params.fetch(:id), name: params.fetch(:name))
-      if stock.id == nil
-        stock = Stock.find_by(ticker: params.fetch(:id))
-      end
-      stock.update_stock(stock.ticker)
-      portfolio = Portfolio.find(params.fetch(:portfolio_id))
-      curr_share = portfolio.shares.create(num_shares: params.fetch(:num_shares), stock_id: stock.id)
-      if curr_share.id == nil
-        redirect_to portfolio_path(portfolio.id), alert: 'Stock already in your portfolio.  Please use Edit to change number of shares.'
-      else
-        redirect_to portfolio_path(portfolio.id)
-      end
+      redirect_to portfolio_path(params.fetch(:portfolio_id)), alert: 'Please enter a number of shares' and return
     end
+    stock = Stock.create(ticker: params.fetch(:id), name: params.fetch(:name))
+    if stock.id == nil
+      stock = Stock.find_by(ticker: params.fetch(:id))
+    end
+    stock.update_stock(stock.ticker)
+    portfolio = Portfolio.find(params.fetch(:portfolio_id))
+    curr_share = portfolio.shares.create(num_shares: params.fetch(:num_shares), stock_id: stock.id)
+    if curr_share.id == nil
+      redirect_to portfolio_path(portfolio.id), alert: 'Stock already in your portfolio.  Please use Edit to change number of shares.' and return
+    end
+    redirect_to portfolio_path(portfolio.id)
   end
 
   def display
@@ -61,8 +58,7 @@ class StocksController < ApplicationController
   end
 
   def update
-    p=params
-    if params.fetch(:num_shares)==""
+    if params.fetch(:num_shares) == ""
       redirect_to portfolio_path(params.fetch(:portfolio_id)), alert: 'Please enter a number of shares'
     else
       share = Share.find(params.fetch(:share_id))

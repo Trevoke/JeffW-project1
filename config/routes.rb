@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get '/portfolios/analyze/:id' => 'portfolios#analyze', as: 'analyze'
   get '/stocks/:sym' => 'stocks#display', as: 'graph'
+
   resources :portfolios do
     resources :stocks, except: [:index]
   end

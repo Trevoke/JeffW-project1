@@ -3,8 +3,6 @@ class Stock < ActiveRecord::Base
   has_many :shares
   has_many :portfolios, through: :shares
   validates_uniqueness_of :ticker
-  # validates :ticker, :uniqueness: {scope: investor_id}, presence: true
-
 
   def self.find_list(stock_name)
     company = stock_name.gsub(" ", "+")
@@ -12,8 +10,8 @@ class Stock < ActiveRecord::Base
     raw_response = HTTParty.get(url)
     json = raw_response.match /(\{.*\})/
     result = JSON.parse(json.to_s)
-    filtered = result["ResultSet"]["Result"].select do |stock|
-        stock["exchDisp"]=="NYSE" || stock["exchDisp"]=="NASDAQ"
+    result["ResultSet"]["Result"].select do |stock|
+      stock["exchDisp"]=="NYSE" || stock["exchDisp"]=="NASDAQ"
     end
   end
 
@@ -36,10 +34,12 @@ class Stock < ActiveRecord::Base
     end
   end
 
+  # This method does not belong inside the model since it is clearly creating
+  # an SVG.
   def self.graph_it(prices)
     num_prices = prices.count
     data = pv.range(1, num_prices+1, 1).map {|x|
-    OpenStruct.new({:x=> x, :y=> prices[x-1]})
+      OpenStruct.new({:x=> x, :y=> prices[x-1]})
     }
     w = 600
     h = 300

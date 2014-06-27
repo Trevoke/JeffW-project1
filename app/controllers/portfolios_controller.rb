@@ -1,4 +1,3 @@
-
 class PortfoliosController < ApplicationController
 
   def index
@@ -33,6 +32,10 @@ class PortfoliosController < ApplicationController
     if @begin_date > @end_date
       redirect_to portfolio_path(@portfolio.id), alert: 'End Date should be after Begin Date'
     end
+    # Here there is a lot of logic which looks like it should be wrapped in a method
+    # inside an object for easy testing / maintenance
+    # Having it here in the controller means the only way to test it is to
+    # call this action.
     full_portfolio_data = Portfolio.combine_data(@portfolio.id)
     full_portfolio_data.each do |stock|
       stock["begin_date"] = Day.verify_begin_date(params.fetch(:begin_date), stock["ticker"])
